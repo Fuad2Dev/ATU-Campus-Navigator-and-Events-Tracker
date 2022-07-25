@@ -22,7 +22,7 @@
                         <p class="m-0">Already have an account ?</p>
                     </div>
                     <div class="text-center">
-                        <a href="#!">Sign in</a>
+                        <a href="{{ route('login') }}">Sign in</a>
                     </div>
                 </div>
 
