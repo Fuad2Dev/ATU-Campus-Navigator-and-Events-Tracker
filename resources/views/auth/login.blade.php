@@ -9,7 +9,7 @@
                 </div> --}}
 
                 <x-input label="ID"/>
-                <x-input label="Password"/>
+                <x-input label="Password" type="password"/>
               
               
                 <!-- 2 column grid layout for inline styling -->
@@ -38,6 +38,6 @@
                 </div>
               </form>
             </div>
-            <img src="img/map 1.png" alt="" style="height:40vh; bottom: -115px" class="position-absolute">
+            <img src="img/map 1.png" alt="" style="height:40vh; bottom: -115px; z-index: -1" class="position-absolute">
         </div>
 </x-layout>
