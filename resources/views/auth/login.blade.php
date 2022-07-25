@@ -1,4 +1,4 @@
-<x-layout class="bg-white" style="height: 100vh; overflow: hidden" >
+<x-layout class="bg-white" style="height: 85vh; overflow: hidden" >
     <div class="d-flex align-items-center justify-content-center position-relative" style="height: 100%">
         <div class="container ">
             <form>
