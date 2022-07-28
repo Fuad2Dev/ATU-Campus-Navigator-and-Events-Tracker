@@ -1,5 +1,5 @@
 @props(['label'])
-<div class="form-outline mb-4 col-lg-6 m-auto">
+<div class="form-outline mb-4 col-md-6 m-auto">
     <input {{ $attributes }} type="text" id="{{ $label }}" class="form-control" />
     <label class="form-label" name="{{ $label }}" for="{{ $label }}">{{ $label }}</label>
 </div>

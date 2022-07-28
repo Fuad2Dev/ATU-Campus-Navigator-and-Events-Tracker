@@ -31,6 +31,6 @@
 
             </form>
         </div>
-        <img src="img/map 1.png" alt="" style="height:40vh; bottom: -115px; z-index: -1" class="position-absolute">
+        {{-- <img src="img/map 1.png" alt="" style="height:40vh; bottom: -115px; z-index: -1" class="position-absolute"> --}}
     </div>
 </x-layout>
