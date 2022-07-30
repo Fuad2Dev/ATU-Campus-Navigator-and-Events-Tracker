@@ -1,7 +1,7 @@
 <div class="row container col border p-2 m-auto">
     <div class="col-3 col-md-2">
         <div class="p-0 text-center border rounded-circle" style="height: 75.5px; width: 75.5px; overflow: hidden;">
-            <img class="h-100" src="{{asset('img/avatar.jpg')}}" alt="">
+            <img class="h-100" src="{{asset('img/group-icon.jpg')}}" alt="">
         </div>
     </div>
     <div class="col-6 col-md-7 d-flex flex-column">
