@@ -23,6 +23,10 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
+
 Route::post('/home', function () {
     return view('home');
 })->name('home');

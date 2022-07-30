@@ -1,24 +1,23 @@
 <x-layout>
-    <div class="d-flex flex-column vh-100">
+    
         <!-- nav -->
            <x-navbar />
         <!-- nav -->
         
         <!-- Tabs navs -->
-        <ul class="nav nav-tabs mb-3 justify-content-around" id="ex-with-icons" role="tablist">
+        <x-tab.navs>
 
-            <x-tab name="association" icon_class="fas fa-users" count='7' />
-            <x-tab name="feed" icon_class="fas fa-rss" count='3' class="active"/>
-            <x-tab name="notification" icon_class="fas fa-bell" count='8' />
+            <x-tab.nav name="association" icon_class="fas fa-users" count='7' />
+            <x-tab.nav name="feed" icon_class="fas fa-rss" count='3' class="active"/>
+            <x-tab.nav name="notification" icon_class="fas fa-bell" count='8' />
 
-
-        </ul>
+        </x-tab.navs>
         <!-- Tabs navs -->
 
         <!-- Tabs content -->
-        <div class="tab-content border-top col" id="ex-with-icons-content" style="overflow-y: scroll">
+        <x-tab.contents>
 
-            <x-tab-content name="association">
+            <x-tab.content for="association">
                 <x-cards.association />
                 <x-cards.association />
                 <x-cards.association />
@@ -37,7 +36,7 @@
                 <x-cards.association />
             </x-tab-content>
 
-            <x-tab-content name="feed" class="show active">
+            <x-tab.content for="feed" class="show active">
                 <x-cards.feed />
                 <x-cards.feed />
                 <x-cards.feed />
@@ -59,7 +58,7 @@
                 <x-cards.feed />
             </x-tab-content>
 
-            <x-tab-content name="notification" >
+            <x-tab.content for="notification" >
                 <x-cards.notification />
                 <x-cards.notification />
                 <x-cards.notification />
@@ -88,7 +87,8 @@
                 <x-cards.notification />
                 <x-cards.notification />
             </x-tab-content>
-        </div>
+
+        </x-tab-contents>
         <!-- Tabs content -->
-    </div>
+    
 </x-layout>
