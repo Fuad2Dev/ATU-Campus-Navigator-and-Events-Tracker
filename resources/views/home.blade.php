@@ -1,5 +1,9 @@
 <x-layout>
     <div class="d-flex flex-column vh-100">
+        <!-- nav -->
+           <x-navbar />
+        <!-- nav -->
+        
         <!-- Tabs navs -->
         <ul class="nav nav-tabs mb-3 justify-content-around" id="ex-with-icons" role="tablist">
 
