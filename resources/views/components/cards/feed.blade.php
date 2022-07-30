@@ -14,7 +14,7 @@
     <div class="col-2 d-flex align-items-end justify-content-end"><em>~Admin</em></div>
 </div> --}}
 
-<div class="row container m-auto border flex-column p-0">
+<div class="row container m-auto border flex-column p-0 my-2">
     <div class="col row justify-content-between m-auto mt-2">
         {{-- logo --}}
         <div class="col-2">

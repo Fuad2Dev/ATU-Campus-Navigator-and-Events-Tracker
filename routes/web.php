@@ -21,4 +21,8 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/home', function () {
     return view('home');
-});
+})->name('home');
+
+Route::post('/home', function () {
+    return view('home');
+})->name('home');

@@ -1,4 +1,4 @@
-<div class="row container col border p-2 m-auto">
+<div class="row container col border p-2 m-auto my-2">
     <div class="col-2 col-md-2">
         <div class="p-0 text-center border rounded-circle" style="height: 50px; width: 50px; overflow: hidden;">
             <img class="h-100" src="{{asset('img/group-icon.jpg')}}" alt="">

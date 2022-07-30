@@ -1,7 +1,7 @@
 <x-layout class="bg-white" style="height: 100vh; overflow: hidden" >
     <div class="d-flex align-items-center justify-content-center position-relative" style="height: 100%; overflow: hidden">
         <div class="container ">
-            <form>
+            <form action="{{route('home')}}">
                 <!-- Email input -->
                 {{-- <div class="form-outline mb-4">
                   <input type="text" id="form2Example1" class="form-control" />
