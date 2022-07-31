@@ -42,3 +42,7 @@ Route::get('/association/create', function () {
 Route::get('/association/{id}/edit', function () {
     return view('association.edit');
 })->name('association.edit');
+
+Route::get('/event/create', function () {
+    return view('event.create');
+})->name('event.create');
