@@ -2,7 +2,7 @@
     'name' => 'Lorem, ipsum dolor.',
     'id' => '#id',
     'role' => '',
-    'remove' => false
+    'editable' => false
 ])
 <div class="d-flex container col border p-2 m-auto my-2">
     <div class="pr-2">
@@ -21,7 +21,7 @@
             @endif
         </div>
 
-        @if ($remove)
+        @if ($editable)
         <div class="btn btn-danger btn-floating position-absolute top-0 end-0">
             <i class="fas fa-minus"></i>
         </div>
