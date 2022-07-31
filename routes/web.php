@@ -30,3 +30,7 @@ Route::get('/search', function () {
 Route::post('/home', function () {
     return view('home');
 })->name('home');
+
+Route::get('/association/{id}/show', function () {
+    return view('association.show');
+})->name('association.show');
