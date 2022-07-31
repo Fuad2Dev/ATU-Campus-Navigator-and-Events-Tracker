@@ -15,7 +15,7 @@
             {{-- name --}}
             <div class="text-center"><strong>Lorem ipsum dolor sit amet consectetur</strong></div>
             {{-- id --}}
-            <div class="text-center text-info">
+            <div class="text-center text-success">
                 <small>#Lorem246</small>
             </div>
         </div>

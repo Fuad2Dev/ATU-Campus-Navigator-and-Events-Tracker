@@ -34,3 +34,11 @@ Route::post('/home', function () {
 Route::get('/association/{id}/show', function () {
     return view('association.show');
 })->name('association.show');
+
+Route::get('/association/create', function () {
+    return view('association.create');
+})->name('association.create');
+
+Route::get('/association/{id}/edit', function () {
+    return view('association.edit');
+})->name('association.edit');
