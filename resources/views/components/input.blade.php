@@ -1,4 +1,4 @@
-@props(['label', 'name', 'type' => 'text', 'maxlength' => 0, 'options' => ['one', 'two', 'three']])
+@props(['label', 'name' => '', 'type' => 'text', 'maxlength' => 0, 'options' => ['one', 'two', 'three']])
 
 @switch($type)
     @case('select')
@@ -23,8 +23,8 @@
 
     @case('checkbox')
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="{{ $name }}" id="{{ $name }}" />
-            <label class="form-check-label" for="{{ $name }}">{{ $label }}</label>
+            <input class="form-check-input" type="checkbox" value="{{ $label }}" id="{{ $label }}" name="{{ $label }}" />
+            <label class="form-check-label" for="{{ $label }}">{{ $label }}</label>
         </div>
     @break
 
@@ -44,9 +44,9 @@
                     @if ($maxlength > 0) data-mdb-showcounter="true" maxlength="{{ $maxlength }}" @endif
                     rows="4"></textarea>
             @else
-                <input {{ $attributes }} type="{{ $type }}" id="{{ $label }}" class="form-control" />
+                <input {{ $attributes }} name="{{ $name ? $name : $label; }}" type="{{ $type }}" id="{{ $label }}" class="form-control" />
             @endif
-            <label class="form-label" name="{{ $label }}" for="{{ $label }}">{{ $label }}</label>
+            <label class="form-label" for="{{ $label }}">{{ $label }}</label>
 
             @if ($maxlength > 0)
                 <div class="form-helper"></div>

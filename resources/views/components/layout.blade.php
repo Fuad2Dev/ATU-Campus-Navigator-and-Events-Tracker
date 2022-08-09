@@ -64,11 +64,7 @@
 
         @default
     @endswitch --}}
-    <script type="text/javascript">
-        $(function() {
-            console.log("hi");
-        })
-    </script>
+    
 </body>
 
 </html>
