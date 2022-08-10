@@ -34,6 +34,10 @@
                 <x-cards.association />
                 <x-cards.association />
                 <x-cards.association />
+
+                <a href="{{route('association.create')}}" type="button" class="btn btn-primary btn-lg btn-floating position-fixed bottom-2 end-2">
+                    <i class="fas fa-plus"></i>
+                </a>
             </x-tab-content>
 
             <x-tab.content for="feed" class="show active">

@@ -126,7 +126,7 @@ class UserController extends Controller
         if ($logIn) 
             return redirect()->route('home');
         else
-            dd($request);
+            return redirect()->back()->with('error', 'invalid credentials');
     } 
 
     // logout user

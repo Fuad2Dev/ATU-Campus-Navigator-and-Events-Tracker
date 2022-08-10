@@ -16,10 +16,10 @@
         {{-- details --}}
         <div class="col">
             {{-- name --}}
-            <div class="text-center"><strong>Lorem ipsum dolor sit amet consectetur</strong></div>
+            <div class="text-center"><strong>{{$association->name}}</strong></div>
             {{-- id --}}
             <div class="text-center text-success">
-                <small>#Lorem246</small>
+                <small>#{{$association->id}}</small>
             </div>
         </div>
 
@@ -31,8 +31,7 @@
         {{-- about --}}
         <div class=" col-12 text-center">
             <small>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero dolorem, dolorum ab dolor nemo cumque fuga
-                molestias in laboriosam sunt!
+                {{$association->description}}
             </small>
         </div>
 

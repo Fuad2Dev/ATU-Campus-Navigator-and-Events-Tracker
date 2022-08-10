@@ -1,22 +1,13 @@
 <x-layout>
-    <div class="row p-2">
-        {{-- back --}}
-        <div class="col-2">
-            <div class="border rounded-circle d-flex justify-content-center align-items-center"
-                style="height: 40px; width: 40px;">
-                <a href="{{ route('home') }}">
-                    <i class="fas fa-angle-left"></i>
-                </a>
-            </div>
-        </div>
-        {{-- search bar --}}
-        <div class="col">
-            <div class="form-outline">
-                <input type="search" id="form1" class="form-control" placeholder="Search..." aria-label="Search" />
-            </div>
-        </div>
-    </div>
+    <x-navbar :search='false' />
 
+    {{-- <div class="p-4">
+        <x-form.text-box name="search" label="Search" />
+    </div> --}}
+    <form action="{{route('search')}}" method="post" class="p-4">
+        @csrf
+        <x-form.text-box name="search" label="Search" :extend_right_icon="['class' => 'fas fa-search']" />
+    </form>
     {{-- results --}}
     <div class="row">
         <div class="col d-flex align-items-center">
@@ -34,7 +25,7 @@
     </x-tab.navs>
 
     <x-tab.contents>
-        <x-tab.content for="associations" class="show active" >
+        <x-tab.content for="associations" class="show active">
             <x-cards.association />
             <x-cards.association />
             <x-cards.association />
@@ -51,7 +42,7 @@
             <x-cards.association />
         </x-tab.content>
 
-        <x-tab.content for="users" >
+        <x-tab.content for="users">
             <x-cards.user />
             <x-cards.user />
             <x-cards.user />

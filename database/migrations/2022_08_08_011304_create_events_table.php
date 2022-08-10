@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->mediumText('description');
-            $table->string('group_id');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->string('association_id');
+            $table->foreign('association_id')->references('id')->on('associations');
             $table->timestamps();
         });
     }

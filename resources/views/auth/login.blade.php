@@ -2,8 +2,10 @@
     <div class="d-flex align-items-center justify-content-center position-relative"
         style="height: 100%; overflow: hidden">
 
+        
         <form action="{{ route('login') }}" method="POST" class="row g-4 container">
             @csrf
+            <x-alert />
 
             <x-form.text-box label="ID" name="id" />
             <x-form.text-box name="password" label="Password" type="password" />

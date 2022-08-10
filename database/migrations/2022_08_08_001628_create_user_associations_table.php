@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->string('id', 6)->primary();
-            $table->string('name');
-            $table->mediumText('description');
+        Schema::create('user_associations', function (Blueprint $table) {
+            $table->id();
+            $table->string('user_id', 9);
+            $table->string('association_id', 6);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('association_id')->references('id')->on('associations');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('user_associations');
     }
 };
