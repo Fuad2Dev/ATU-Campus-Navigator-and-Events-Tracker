@@ -18,22 +18,9 @@
         <x-tab.contents>
 
             <x-tab.content for="association">
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
-                <x-cards.association />
+                @foreach ($associations as $association)
+                    <x-cards.association name="{{$association->name}}" />  
+                @endforeach
 
                 <a href="{{route('association.create')}}" type="button" class="btn btn-primary btn-lg btn-floating position-fixed bottom-2 end-2">
                     <i class="fas fa-plus"></i>
