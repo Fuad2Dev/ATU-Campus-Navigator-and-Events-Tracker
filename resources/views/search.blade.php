@@ -20,26 +20,15 @@
     </div>
 
     <x-tab.navs>
-        <x-tab.nav name="associations" count="7" icon_class="fas fa-users" class="active" />
-        <x-tab.nav name="users" count="7" icon_class="fas fa-user" />
+        <x-tab.nav name="associations" count="{{$associations->count()}}" icon_class="fas fa-users" class="active" />
+        <x-tab.nav name="users" count="{{$events->count()}}" icon_class="fas fa-user" />
     </x-tab.navs>
 
     <x-tab.contents>
         <x-tab.content for="associations" class="show active">
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
-            <x-cards.association />
+            @foreach ($associations as $association)
+                <x-cards.association :association="$association" />  
+            @endforeach
         </x-tab.content>
 
         <x-tab.content for="users">

@@ -6,6 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
+use App\Models\Association;
+use Illuminate\Console\Scheduling\Event;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,18 +49,16 @@ Route::middleware('auth')->group(function () {
 
 
     // SEARCH
-    Route::prefix('search')->group(function () {
-        Route::get('/', function () {
-            return view('search');
-        })->name('search');
+    Route::name('search')->prefix('search')->group(function () {
+        Route::get('/', [SearchController::class, 'index']);
 
-        Route::post('/', function () {
-            dd(request());
-        })->name('search');
+        Route::post('/', [SearchController::class, 'search']);
     });
+
 
     // ASSOCIATION
     Route::resource('association', AssociationController::class);
+
 
     // EVENT
     Route::resource('event', EventController::class);

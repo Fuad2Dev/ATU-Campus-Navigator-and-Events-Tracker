@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index(){
         $associations = Association::all();
-
+        
         return view('home', compact('associations'));
     }
 
