@@ -46,9 +46,6 @@ class AssociationController extends Controller
         
         $association = Association::create($request->all());
 
-        // REGISTER OWNER
-        
-
         return redirect()->route('association.show', ['association' => $request->id]);
         
     }
