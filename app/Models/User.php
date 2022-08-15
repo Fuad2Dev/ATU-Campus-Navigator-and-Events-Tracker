@@ -3,11 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Association;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use phpDocumentor\Reflection\Types\This;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use phpDocumentor\Reflection\Types\This;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,13 @@ class User extends Authenticatable
     ];
 
     public function associations(){
-        return $this->hasManyThrough(Association::class, UserAssociation::class);
+        return $this->belongsToMany(Association::class)->withPivot('role_id')->withTimestamps();
     }
+
+    public function role(String $association_id){
+        
+        $role_id = $this->associations->find($association_id)->pivot->role_id;
+        return Role::find($role_id)->description;
+    }
+
 }

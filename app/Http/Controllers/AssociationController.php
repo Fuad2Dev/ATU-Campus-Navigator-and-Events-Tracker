@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Association;
+use App\Models\UserAssociation;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,9 @@ class AssociationController extends Controller
         
         $association = Association::create($request->all());
 
+        $association->members()->attach(auth()->user()->id, ['role_id' => 1]);
+        
+
         return redirect()->route('association.show', ['association' => $request->id]);
         
     }
@@ -58,7 +62,7 @@ class AssociationController extends Controller
      */
     public function show(Association $association)
     {
-        // dd($association);
+        
         return view('association.show', compact('association'));
     }
 

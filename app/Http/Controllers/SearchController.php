@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Association;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -34,6 +35,7 @@ class SearchController extends Controller
 
         $events = collect();
 
+
         // $events = Str::startsWith($keyWord, '#') ?
         //     Event::query()
         //     ->where('id', 'LIKE', "%{$keyWord}%")
@@ -41,7 +43,6 @@ class SearchController extends Controller
         //     Event::query()
         //     ->where('name', 'LIKE', "%{$keyWord}%")
         //     ->get();
-
 
         return view('search', compact('associations', 'events'));
     }

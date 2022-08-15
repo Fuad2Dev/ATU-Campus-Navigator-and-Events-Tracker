@@ -35,17 +35,46 @@
             </small>
         </div>
 
-        {{-- edit btn --}}
+        {{-- ctrl btns --}}
         <div class="col-12 d-flex justify-content-between align-items-center mt-2">
-            <div>
-                <a class="btn btn-primary">
-                    edit <i class="fas fa-edit"></i>
-                </a>
-                
-                <a class="btn btn-danger">
-                    Leave
-                </a>
-            </div>
+            @switch($association->myRoleId())
+                @case(1)
+                <div>
+                    <a class="btn btn-primary">
+                        Edit <i class="fas fa-edit"></i>
+                    </a>
+                    
+                    <a class="btn btn-danger">
+                        Delete
+                    </a>
+                </div>
+                    @break
+                @case(2)
+                <div>
+                    <a class="btn btn-primary">
+                        Edit <i class="fas fa-edit"></i>
+                    </a>
+                    
+                    <a class="btn btn-danger">
+                        Leave
+                    </a>
+                </div>
+                    @break
+                @case(3)
+                <div>
+                    <a class="btn btn-danger">
+                        Leave
+                    </a>
+                </div>
+                    @break
+                @default
+                <div>
+                    <a class="btn btn-success">
+                        Join
+                    </a>
+                </div>
+            @endswitch
+            
             {{-- <div class="text-primary">edit</div> --}}
             <small>created --/--/---</small>
         </div>
@@ -58,7 +87,7 @@
     <!-- /association -->
 
     <x-tab.navs>
-        <x-tab.nav name='members' icon_class='fas fa-user' count='15' class="active"/>
+        <x-tab.nav name='members' icon_class='fas fa-user' count='{{ $association->members->count() }}' class="active"/>
 
         <div class="btn btn-primary btn-floating ">
             <i class="fas fa-plus"></i>
@@ -69,16 +98,12 @@
 
     <x-tab.contents>
         <x-tab.content for='members' class="show active">
-            <x-cards.user role="admin"/>
-            <x-cards.user role="co-admin"/>
-            <x-cards.user :editable='true' />
-            <x-cards.user :editable='true' />
-            <x-cards.user :editable='true' />
-            <x-cards.user :editable='true' />
-            <x-cards.user :editable='true' />
-            <x-cards.user :editable='true' />
-            <x-cards.user :editable='true' />
-            <x-cards.user :editable='true' />
+            {{-- admin --}}
+            <x-cards.user :user="$association->admin->first()" :role="$association->admin()->first()->role($association->id)" />
+            {{-- co-admin --}}
+            {{-- members --}}
+            {{-- <x-cards.user role="co-admin"/>
+            <x-cards.user :editable='true' /> --}}
         </x-tab.content>
 
         <x-tab.content for='events'>

@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('user_associations', function (Blueprint $table) {
+        Schema::create('association_user', function (Blueprint $table) {
+            $table->string('user_id', 9);
+            $table->string('association_id', 6);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('association_id')->references('id')->on('associations');
             $table->foreignId('role_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('user_associations', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('association_user');
     }
 };

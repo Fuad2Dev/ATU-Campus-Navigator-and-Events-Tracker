@@ -27,11 +27,22 @@
     <x-tab.contents>
         <x-tab.content for="associations" class="show active">
             @foreach ($associations as $association)
-                <x-cards.association :association="$association" />  
+                <x-cards.association :association="$association" role="{{$association->myRole()}}" />  
             @endforeach
         </x-tab.content>
 
         <x-tab.content for="users">
+            {{-- <x-cards.user />
+            <x-cards.user />
+            <x-cards.user />
+            <x-cards.user />
+            <x-cards.user />
+            <x-cards.user />
+            <x-cards.user />
+            <x-cards.user />
+            <x-cards.user />
+            .
+
             <x-cards.user />
             <x-cards.user />
             <x-cards.user />
@@ -42,16 +53,7 @@
             <x-cards.user />
             <x-cards.user />
             <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
+            <x-cards.user /> --}}
         </x-tab.content>
     </x-tab.contents>
 </x-layout>

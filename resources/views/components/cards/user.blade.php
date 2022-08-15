@@ -1,4 +1,5 @@
 @props([
+    'user',
     'name' => 'Lorem, ipsum dolor.',
     'id' => '#id',
     'role' => '',
@@ -13,9 +14,9 @@
     </div>
     <div class="col col-md-7 d-flex justify-content-end flex-column position-relative">
 
-        <strong>{{ $name }}</strong>
+        <strong>{{ $user->last_name }}</strong>
         <div class="d-flex justify-content-between">
-            <small>{{ $id }}</small>
+            <small># {{ $user->id }}</small>
             @if ($role != '')
                 <em>~{{ $role }}</em>
             @endif
