@@ -33,6 +33,14 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456789')
         ]);
 
+        User::factory()->create([
+            'first_name' => 'Fuad',
+            'last_name' => 'Senpai',
+            'email' => 'tchnvirus@gmail.com',
+            'id' => '01193431D',
+            'password' => Hash::make('123456789')
+        ]);
+
         $this->call(RoleSeeder::class);
 
         // $this->call(AssociationSeeder::class);

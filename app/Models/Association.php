@@ -14,9 +14,14 @@ class Association extends Model
 
     protected $fillable = ['id', 'name', 'description'];
 
-    public function allMembers()
+    public function associates()
     {
         return $this->belongsToMany(User::class)->withPivot('role_id')->withTimestamps();
+    }
+
+    public function allMembers()
+    {
+        return $this->associates()->wherePivotNotIn('role_id', [4]);
     }
 
     public function myRole()
@@ -25,7 +30,7 @@ class Association extends Model
         $user_id = auth()->user()->id;
         try {
             //code...
-            $role_id = $this->allMembers->find($user_id)->pivot->role_id;
+            $role_id = $this->associates->find($user_id)->pivot->role_id;
             return Role::find($role_id)->description;
             
         } catch (\Throwable $th) {
@@ -39,7 +44,7 @@ class Association extends Model
     {
         try {
             $user_id = auth()->user()->id;
-            $role_id = $this->allMembers->find($user_id)->pivot->role_id;
+            $role_id = $this->associates->find($user_id)->pivot->role_id;
 
             return $role_id;
         } catch (\Throwable $th) {
@@ -49,20 +54,25 @@ class Association extends Model
 
     public function admin()
     {
-        return $this->allMembers()->wherePivot('role_id', 1);
+        return $this->associates()->wherePivot('role_id', 1);
     }
 
     public function coAdmin()
     {
-        return $this->allMembers()->wherePivot('role_id', 2);
+        return $this->associates()->wherePivot('role_id', 2);
     }
 
     public function members()
     {
-        return $this->allMembers()->wherePivot('role_id', 3);
+        return $this->associates()->wherePivot('role_id', 3);
     }
 
-    public function join(){
-        
+    public function requets()
+    {
+        return $this->associates()->wherePivot('role_id', 4);
     }
+
+    
+
+
 }

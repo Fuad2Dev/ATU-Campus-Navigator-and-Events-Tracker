@@ -58,6 +58,10 @@ Route::middleware('auth')->group(function () {
 
     // ASSOCIATION
     Route::resource('association', AssociationController::class);
+    Route::get('association/{association}/accept/{user}', [AssociationController::class, 'accept'])->name('association.accept');
+    Route::get('association/{association}/decline/{user}', [AssociationController::class, 'decline'])->name('association.decline');
+    Route::get('association/{association}/request', [AssociationController::class, 'request'])->name('association.request');
+    Route::get('association/{association}/leave', [AssociationController::class, 'leave'])->name('association.leave');
 
 
     // EVENT

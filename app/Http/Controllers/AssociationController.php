@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Association;
-use App\Models\UserAssociation;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\UserAssociation;
 
 class AssociationController extends Controller
 {
@@ -62,8 +63,8 @@ class AssociationController extends Controller
      */
     public function show(Association $association)
     {
-        
-        return view('association.show', compact('association'));
+        $requests = ($association->requets);
+        return view('association.show', compact('association', 'requests'));
     }
 
     /**
@@ -107,5 +108,32 @@ class AssociationController extends Controller
         } while (Association::where("id", "=", $code)->first());
   
         return $code;
+    }
+
+    public function accept(Association $association, User $user){
+        
+        $association->associates()->updateExistingPivot($user->id, ['role_id' => 3]);
+
+        return redirect()->route('association.show', $association);
+    }
+
+    public function decline(Association $association, User $user){
+        $association->associates()->detach($user->id);
+
+        return redirect()->route('association.show', $association);
+    }
+
+
+
+    public function request(Association $association){
+        $user_id = auth()->user()->id;
+        $association->allMembers()->attach($user_id, ['role_id' => 4]);
+        return redirect()->route('association.show', $association->id);
+    }
+
+    public function leave(Association $association){
+        $user_id = auth()->user()->id;
+        $association->allMembers()->detach($user_id);
+        return redirect()->route('association.show', $association->id);
     }
 }
