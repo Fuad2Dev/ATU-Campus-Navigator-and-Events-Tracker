@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456789')
         ]);
 
-        $this->call(RoleSeeder::class);
+        // $this->call(RoleSeeder::class);
 
         // $this->call(AssociationSeeder::class);
     }
