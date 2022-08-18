@@ -120,15 +120,22 @@
                 ->first()
                 ->role($association->id)" />
             {{-- co-admin --}}
-            @if ($association->coAdmin()->count() > 0)
-                <x-cards.user :user="$association->coAdmin->first()" :role="$association
+            @php
+                $hasCoAdmin = $association->coAdmin()->count() > 0 ? true : false;
+            @endphp
+            @if ($hasCoAdmin)
+                <x-cards.user :user="$association->coAdmin->first()" :association="$association" :editable="true" :role="$association
                     ->coAdmin()
                     ->first()
-                    ->role($association->id)" />
+                    ->role($association->id)"
+                    :hasCoAdmin="$hasCoAdmin" 
+                    :isCoAdmin="true"
+                    />
             @endif
 
             @foreach ($association->members as $member)
-                <x-cards.user :user="$member" :role="$member->role($association->id)" />
+                <x-cards.user :user="$member" :role="$member->role($association->id)" :editable="true" :association="$association"
+                    :hasCoAdmin="$hasCoAdmin" />
             @endforeach
             {{-- members --}}
             {{-- <x-cards.user role="co-admin"/>
@@ -158,7 +165,7 @@
             <x-tab.content for='requests'>
 
                 @foreach ($requests as $member)
-                    <x-cards.request :user="$member" :role="$member->role($association->id)" :association="$association"/>
+                    <x-cards.request :user="$member" :role="$member->role($association->id)" :association="$association" />
                 @endforeach
 
             </x-tab.content>
