@@ -31,7 +31,7 @@
                                             class="dropdown-item text-white"
                                             href="{{ route('association.demote', compact('association', 'user')) }}"><i
                                                 class="bi bi-arrow-down-circle"></i> Demote</a></li>
-                                    <li class="bg-danger"><a class="dropdown-item text-white" href="#"><i
+                                    <li class="bg-danger"><a class="dropdown-item text-white" href="{{ route('association.remove', compact('association', 'user')) }}"><i
                                                 class="fas fa-user-minus"></i> remove</a></li>
                                 </ul>
                             </div>
@@ -46,7 +46,7 @@
                                             class="dropdown-item disabled"
                                             href="{{ route('association.promote', compact('association', 'user')) }}"><i
                                                 class="bi bi-arrow-up-circle"></i> Promote</a></li>
-                                    <li class="bg-danger"><a class="dropdown-item text-white" href="#"><i
+                                    <li class="bg-danger"><a class="dropdown-item text-white" href="{{ route('association.remove', compact('association', 'user')) }}"><i
                                                 class="fas fa-user-minus"></i> remove</a></li>
                                 </ul>
                             </div>
@@ -62,7 +62,7 @@
                                         class="dropdown-item text-white"
                                         href="{{ route('association.promote', compact('association', 'user')) }}"><i
                                             class="bi bi-arrow-up-circle"></i> Promote</a></li>
-                                <li class="bg-danger"><a class="dropdown-item text-white" href="#"><i
+                                <li class="bg-danger"><a class="dropdown-item text-white" href="{{ route('association.remove', compact('association', 'user')) }}"><i
                                             class="fas fa-user-minus"></i> remove</a></li>
                             </ul>
                         </div>

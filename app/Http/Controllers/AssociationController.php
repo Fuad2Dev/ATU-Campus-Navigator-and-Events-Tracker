@@ -147,4 +147,10 @@ class AssociationController extends Controller
         $association->associates()->updateExistingPivot($user->id, ['role_id' => 3]);
         return redirect()->route('association.show', $association);
     }
+
+    public function remove(Association $association, User $user){
+        // dd("yoo");
+        $association->associates()->detach($user->id);
+        return redirect()->route('association.show', $association);
+    }
 }

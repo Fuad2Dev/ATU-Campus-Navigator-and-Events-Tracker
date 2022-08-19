@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('association/{association}/decline/{user}', [AssociationController::class, 'decline'])->name('association.decline');
     Route::get('association/{association}/promote/{user}', [AssociationController::class, 'promote'])->name('association.promote');
     Route::get('association/{association}/demote/{user}', [AssociationController::class, 'demote'])->name('association.demote');
+    Route::get('association/{association}/remove/{user}', [AssociationController::class, 'remove'])->name('association.remove');
     Route::get('association/{association}/request', [AssociationController::class, 'request'])->name('association.request');
     Route::get('association/{association}/leave', [AssociationController::class, 'leave'])->name('association.leave');
 
