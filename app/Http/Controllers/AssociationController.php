@@ -73,9 +73,9 @@ class AssociationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Association $association)
     {
-        //
+        return view('association.edit', compact('association'));
     }
 
     /**
@@ -85,9 +85,9 @@ class AssociationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Association $association)
     {
-        //
+        dd("update");
     }
 
     /**

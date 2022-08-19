@@ -10,15 +10,18 @@
             <div class="btn btn-danger">Remove</div>
         </div>
     </div>
-    <form class="container">
-        <x-input label="name" />
-        <x-input label="description" type='textarea' maxlength='140'/>
+    <form class="container mx-auto row g-4 mt-4" action="{{route('association.update')}}">
+        @csrf
+        @method('PUT')
+        <x-form.text-box label="name" name="name" :value="$association->name"  />
+        <x-form.text-box label="ID" name="id" :value="$association->id" maxlength=6  extend_left='#' />
+        <x-form.text-area label="description" :value="$association->description" name="description" maxlength='140' />
 
         <div class="p-2"></div>
 
         <div class="d-flex container justify-content-between">
-            <div class="btn btn-danger">Cancel</div>
-            <div class="btn btn-primary">Update</div>
+            <a class="btn btn-danger" href="{{route('association.show', $association)}}">Cancel</a>
+            <input type="submit" class="btn btn-success" value="Update">
         </div>
     </form>
 </x-layout>

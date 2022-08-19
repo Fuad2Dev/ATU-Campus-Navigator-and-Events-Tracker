@@ -41,7 +41,7 @@
             @switch($association->myRoleId())
                 @case(1)
                     <div>
-                        <a class="btn btn-primary">
+                        <a class="btn btn-primary" href="{{route('association.edit', $association)}}">
                             Edit <i class="fas fa-edit"></i>
                         </a>
 
