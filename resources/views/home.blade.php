@@ -9,7 +9,7 @@
 
             <x-tab.nav name="association" icon_class="fas fa-users" count='{{$my->associations->count()}}' />
             <x-tab.nav name="feed" icon_class="fas fa-rss" count='3' class="active"/>
-            <x-tab.nav name="notification" icon_class="fas fa-bell" count='8' />
+            <x-tab.nav name="notification" icon_class="fas fa-bell" count='+8' />
 
         </x-tab.navs>
         <!-- Tabs navs -->

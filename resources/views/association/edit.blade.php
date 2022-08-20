@@ -10,7 +10,7 @@
             <div class="btn btn-danger">Remove</div>
         </div>
     </div>
-    <form class="container mx-auto row g-4 mt-4" action="{{route('association.update')}}">
+    <form method="POST" class="container mx-auto row g-4 mt-4" action="{{route('association.update', $association)}}">
         @csrf
         @method('PUT')
         <x-form.text-box label="name" name="name" :value="$association->name"  />

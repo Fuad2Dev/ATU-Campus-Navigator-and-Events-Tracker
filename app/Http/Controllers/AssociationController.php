@@ -87,7 +87,9 @@ class AssociationController extends Controller
      */
     public function update(Request $request, Association $association)
     {
-        dd("update");
+        $association->update($request->all());
+
+        return redirect()->route('association.show', $association);
     }
 
     /**
