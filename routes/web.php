@@ -47,7 +47,6 @@ Route::middleware('auth')->group(function () {
     // HOME
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-
     // SEARCH
     Route::name('search')->prefix('search')->group(function () {
         Route::get('/', [SearchController::class, 'index']);
@@ -57,18 +56,23 @@ Route::middleware('auth')->group(function () {
 
 
     // ASSOCIATION
-    // Route::resource('association', AssociationController::class);
-    Route::get('association/{association}', [AssociationController::class, 'show'])->name('association.show');
-    Route::get('association/create', [AssociationController::class, 'create'])->name('association.create');
-    Route::get('association/{association}/edit', [AssociationController::class, 'edit'])->name('association.edit');
-    Route::put('association/{association}', [AssociationController::class, 'update'])->name('association.update');
     Route::get('association/{association}/accept/{user}', [AssociationController::class, 'accept'])->name('association.accept');
+    Route::get('association/{association}/cancel', [AssociationController::class, 'cancel'])->name('association.cancel');
     Route::get('association/{association}/decline/{user}', [AssociationController::class, 'decline'])->name('association.decline');
     Route::get('association/{association}/promote/{user}', [AssociationController::class, 'promote'])->name('association.promote');
     Route::get('association/{association}/demote/{user}', [AssociationController::class, 'demote'])->name('association.demote');
     Route::get('association/{association}/remove/{user}', [AssociationController::class, 'remove'])->name('association.remove');
     Route::get('association/{association}/request', [AssociationController::class, 'request'])->name('association.request');
     Route::get('association/{association}/leave', [AssociationController::class, 'leave'])->name('association.leave');
+
+    Route::resource('association', AssociationController::class)->except([
+        'index'
+    ])->missing(function(){return redirect()->route('home');});
+    // Route::get('association/{association}', [AssociationController::class, 'show'])->name('association.show');
+    // Route::get('association/create', [AssociationController::class, 'create'])->name('association.create');
+    // Route::get('association/{association}/edit', [AssociationController::class, 'edit'])->name('association.edit');
+    // Route::put('association/{association}', [AssociationController::class, 'update'])->name('association.update');
+    
 
 
     // EVENT

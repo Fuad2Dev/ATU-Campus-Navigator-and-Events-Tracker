@@ -61,4 +61,10 @@ class User extends Authenticatable
         return Role::find($role_id)->description;
     }
 
+    public function notifications(){
+        return $this->belongsToMany(Notification::class)->withPivot('opened');
+    }
+
+    
+
 }

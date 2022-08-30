@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('association_user', function (Blueprint $table) {
+        Schema::create('notification_types', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id', 9);
-            $table->string('association_id', 6);
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('association_id')->references('id')->on('associations')->constrained()->onDelete('cascade');
-            $table->foreignId('role_id');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('association_user');
+        Schema::dropIfExists('notification_types');
     }
 };

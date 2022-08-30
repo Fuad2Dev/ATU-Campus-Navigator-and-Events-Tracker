@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('notification_type_id');
+            // $table->string('notifier_id')->nullable();
+            // $table->foreign('notifier_id')->references('id')->on('users');
+
             $table->string('association_id');
             $table->foreign('association_id')->references('id')->on('associations');
-            $table->string('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreignId('event_id')->nullable();
-            $table->boolean('read')->default(false);
+
+            $table->foreignId('notification_type_id');
+            
             $table->timestamps();
         });
     }

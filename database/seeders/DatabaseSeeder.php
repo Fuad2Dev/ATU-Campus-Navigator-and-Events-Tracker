@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\NotificationType;
+
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
 
-        $this->call(NotificationType::class);
+        $this->call(NotificationTypeSeeder::class);
 
         // $this->call(AssociationSeeder::class);
     }

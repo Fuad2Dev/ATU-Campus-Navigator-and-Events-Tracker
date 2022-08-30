@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use App\Models\NotificationType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class NotificationTypeSeeder extends Seeder
 {
@@ -17,39 +17,43 @@ class NotificationTypeSeeder extends Seeder
     {
         NotificationType::factory()->create([
             'id' => 1,
-            'description' => 'request to join group'
+            'description' => 'pending request'
         ]);
         NotificationType::factory()->create([
             'id' => 2,
-            'description' => 'invite to join group'
+            'description' => 'request accepted'
         ]);
         NotificationType::factory()->create([
             'id' => 3,
-            'description' => 'kicked out from group'
+            'description' => 'request declined'
         ]);
         NotificationType::factory()->create([
             'id' => 4,
-            'description' => 'promoted'
+            'description' => 'invite to join group'
         ]);
         NotificationType::factory()->create([
             'id' => 5,
-            'description' => 'demoted'
+            'description' => 'invite accepted'
         ]);
         NotificationType::factory()->create([
             'id' => 6,
-            'description' => 'event rescheduled'
+            'description' => 'invite declined'
         ]);
         NotificationType::factory()->create([
             'id' => 7,
-            'description' => 'event location updated'
+            'description' => 'promoted'
         ]);
         NotificationType::factory()->create([
             'id' => 8,
-            'description' => 'event cancelled'
+            'description' => 'demoted'
         ]);
         NotificationType::factory()->create([
             'id' => 9,
-            'description' => 'event invitation cancelled'
+            'description' => 'kicked out of association'
+        ]);
+        NotificationType::factory()->create([
+            'id' => 10,
+            'description' => 'asoociation deleted'
         ]);
     }
 }

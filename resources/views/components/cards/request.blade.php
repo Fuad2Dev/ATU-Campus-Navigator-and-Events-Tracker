@@ -22,7 +22,7 @@
         <div class="col-12 p-2 justify-content-between">
             <a href="{{ route('association.accept', compact('association', 'user')) }}"
                 class="col-4 btn btn-success">Accept</a>
-            <a href="{{ route('association.decline', compact('association', 'user')) }}" class="col-4 btn btn-danger">Decline</a>
+            <a href="{{ route('association.decline', compact('association', 'user')) }}" class="col-4 btn btn-danger">Cancel</a>
             {{-- <a href="" class="col-4 btn btn-danger">Block</a> --}}
         </div>
     </div>

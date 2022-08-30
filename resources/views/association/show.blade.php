@@ -40,18 +40,21 @@
         <div class="col-12 d-flex justify-content-between align-items-center mt-2">
             @switch($association->myRoleId())
                 @case(1)
-                    <div>
+                    <div class="d-flex">
                         <a class="btn btn-primary" href="{{route('association.edit', $association)}}">
                             Edit <i class="fas fa-edit"></i>
                         </a>
-
-                        <a class="btn btn-danger">
-                            Delete
+                        <div class="p-2"></div>
+                        <form action="{{route('association.destroy', $association)}}" method="post" >
+                            @csrf
+                            @method('delete')
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
                         </a>
                     </div>
                 @break
 
-                @case(2)
+                @case(2) 
                     <div>
                         <a class="btn btn-primary">
                             Edit <i class="fas fa-edit"></i>
@@ -73,7 +76,7 @@
 
                 @case(4)
                     <div>
-                        <a class="btn btn-danger" href="">
+                        <a class="btn btn-danger" href="{{route('association.cancel', $association)}}">
                             Cancel Request
                         </a>
                     </div>

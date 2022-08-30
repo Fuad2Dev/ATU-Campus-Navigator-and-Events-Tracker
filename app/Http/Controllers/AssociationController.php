@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Association;
+use App\Models\Notification;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\UserAssociation;
@@ -42,17 +43,16 @@ class AssociationController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'id' => 'required|max:6|min:3'
-        ],[
+        ], [
             'required' => 'required'
         ]);
-        
+
         $association = Association::create($request->all());
 
         $association->members()->attach(auth()->user()->id, ['role_id' => 1]);
-        
+
 
         return redirect()->route('association.show', ['association' => $request->id]);
-        
     }
 
     /**
@@ -63,7 +63,7 @@ class AssociationController extends Controller
      */
     public function show(Association $association)
     {
-        $requests = ($association->requets);
+        $requests = ($association->requests);
         return view('association.show', compact('association', 'requests'));
     }
 
@@ -98,9 +98,15 @@ class AssociationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Association $association)
     {
-        //
+        // eNU08n
+        $association->delete();
+
+        // notify
+        Notification::notify(10, $association->id, $association->allMembers);
+
+        return redirect()->route('home');
     }
 
     public function generateUniqueId()
@@ -108,51 +114,89 @@ class AssociationController extends Controller
         do {
             $code = Str::random(6);
         } while (Association::where("id", "=", $code)->first());
-  
+
         return $code;
     }
 
-    public function accept(Association $association, User $user){
-        
+    public function accept(Association $association, User $user)
+    {
+        // dd($user);
+        Notification::notify(2, $association->id, $user);
+
+
+
         $association->associates()->updateExistingPivot($user->id, ['role_id' => 3]);
 
+        // notify user
+
         return redirect()->route('association.show', $association);
     }
 
-    public function decline(Association $association, User $user){
+    public function cancel(Association $association)
+    {
+        $association->associates()->detach(auth()->user()->id);
+        return redirect()->route('association.show', $association);
+    }
+
+    public function decline(Association $association, User $user)
+    {
         $association->associates()->detach($user->id);
-
+        Notification::notify(3, $association->id, $user);
         return redirect()->route('association.show', $association);
     }
 
 
 
-    public function request(Association $association){
-        $user_id = auth()->user()->id;
-        $association->allMembers()->attach($user_id, ['role_id' => 4]);
+    public function request(Association $association)
+    {
+        // dd($association->executives     );
+        Notification::notify(1, $association->id, $association->executives);
+        $user = User::find(auth()->user()->id);
+
+        // send request
+        $association->allMembers()->attach($user->id, ['role_id' => 4]);
+
+        // notify executives
+
         return redirect()->route('association.show', $association->id);
     }
 
-    public function leave(Association $association){
+    public function leave(Association $association)
+    {
         $user_id = auth()->user()->id;
         $association->allMembers()->detach($user_id);
         return redirect()->route('association.show', $association->id);
     }
 
-    public function promote(Association $association, User $user){
+    public function promote(Association $association, User $user)
+    {
         $association->associates()->updateExistingPivot($user->id, ['role_id' => 2]);
+
+        // notify
+        Notification::notify(7, $association->id, $user);
+
         return redirect()->route('association.show', $association);
     }
 
-    public function demote(Association $association, User $user){
+    public function demote(Association $association, User $user)
+    {
         // dd("yoo");
         $association->associates()->updateExistingPivot($user->id, ['role_id' => 3]);
+
+        // notify
+        Notification::notify(8, $association->id, $user);
+
         return redirect()->route('association.show', $association);
     }
 
-    public function remove(Association $association, User $user){
+    public function remove(Association $association, User $user)
+    {
         // dd("yoo");
         $association->associates()->detach($user->id);
+
+        //notify
+        Notification::notify(9, $association->id, $user);
+
         return redirect()->route('association.show', $association);
     }
 }

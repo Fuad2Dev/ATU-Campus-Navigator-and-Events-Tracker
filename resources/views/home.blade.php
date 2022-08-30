@@ -50,33 +50,11 @@
             </x-tab-content>
 
             <x-tab.content for="notification" >
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
-                <x-cards.notification />
+                
+                @foreach ($notifications as $notification)
+                    <x-cards.notification :notification="$notification" />
+                @endforeach
+                
             </x-tab-content>
 
         </x-tab-contents>

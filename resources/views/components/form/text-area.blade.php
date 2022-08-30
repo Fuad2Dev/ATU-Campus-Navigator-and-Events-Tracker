@@ -1,4 +1,4 @@
-@props(['maxlength' => 0, 'name', 'label', 'value'])
+@props(['maxlength' => 0, 'name', 'label', 'value' => ''])
 <div class="col">
     <div class="form-outline mb-4 col-md-6 m-auto">
         <textarea class="form-control" id="textAreaExample" style="resize:none" name="{{ $name }}"
