@@ -28,25 +28,9 @@
             </x-tab-content>
 
             <x-tab.content for="feed" class="show active">
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
-                <x-cards.feed />
+                @foreach ($events as $event)
+                <x-cards.feed :event="$event"/>
+                @endforeach
             </x-tab-content>
 
             <x-tab.content for="notification" >

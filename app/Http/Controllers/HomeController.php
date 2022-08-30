@@ -12,8 +12,18 @@ class HomeController extends Controller
     public function index(){
         $my = User::find(auth()->user()->id);
         $notifications = Notification::show($my->notifications);
-        // dd($notifications);
-        return view('home', compact( 'my', 'notifications'));
+        $events = $this->events();
+        // dd($events);
+        return view('home', compact( 'my', 'notifications', 'events'));
+    }
+
+    public function events(){
+        $associations = User::find(auth()->user()->id)->associations;
+        $events = collect();
+        foreach ($associations as $association) {
+            $events->add($association->events);
+        }
+        return $events->first();
     }
 
 }

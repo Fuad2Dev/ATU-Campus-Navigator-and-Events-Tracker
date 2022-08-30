@@ -76,7 +76,7 @@ Route::middleware('auth')->group(function () {
 
 
     // EVENT
-    Route::resource('event', EventController::class);
+    Route::resource('association.event', EventController::class)->except(['index']);
 
 
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');

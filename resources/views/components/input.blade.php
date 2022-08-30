@@ -31,7 +31,7 @@
     @case('radio')
         @foreach ($options as $option)
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{$name}}" id="{{$name}}" />
+                <input class="form-check-input" type="radio" name="{{$name}}" value="{{$option}}" id="{{$name}}" checked />
                 <label class="form-check-label" for="{{$name}}">{{$option}}</label>
             </div>
         @endforeach

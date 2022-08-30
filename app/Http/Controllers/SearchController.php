@@ -12,8 +12,8 @@ class SearchController extends Controller
     public function index()
     {
         $associations = collect();
-        $events = collect();
-        return view('search', compact('associations', 'events'));
+        $users = collect();
+        return view('search', compact('associations', 'users'));
     }
     public function search(Request $request)
     {
@@ -33,7 +33,15 @@ class SearchController extends Controller
             ->where('name', 'LIKE', "%{$keyWord}%")
             ->get();
 
-        $events = collect();
+        $users = Str::startsWith($keyWord, '#') ?
+
+            User::query()
+            ->where('id', 'LIKE', "%{$keyWord}%")
+            ->get() :
+            User::query()
+            ->where('first_name', 'LIKE', "%{$keyWord}%")
+            ->orWhere('last_name', 'LIKE', "%{$keyWord}%")
+            ->get();
 
 
         // $events = Str::startsWith($keyWord, '#') ?
@@ -44,6 +52,6 @@ class SearchController extends Controller
         //     ->where('name', 'LIKE', "%{$keyWord}%")
         //     ->get();
 
-        return view('search', compact('associations', 'events'));
+        return view('search', compact('associations', 'users'));
     }
 }

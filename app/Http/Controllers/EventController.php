@@ -3,28 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Association;
+use App\Models\InviteType;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Association $association)
     {
-        //
+        $inviteTypes = InviteType::all();
+        // dd($inviteTypes);
+        return view('event.create', compact('association', 'inviteTypes'));
     }
 
     /**
@@ -33,9 +28,20 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Association $association,Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+        ],[
+            'required' => 'required'
+        ]);
+        // dd($request->all());
+        // $row = $request->all();
+        // array_push($row, $association->id);
+
+        $association->events()->create($request->all());
+
+        return redirect()->route('association.show', $association);
     }
 
     /**
@@ -55,9 +61,10 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(Association $association, Event $event)
     {
-        //
+        $inviteTypes = InviteType::all();
+        return view('event.edit', compact('event', 'association', 'inviteTypes'));
     }
 
     /**
@@ -67,9 +74,24 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Association $association, Event $event)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+        ],[
+            'required' => 'required'
+        ]);
+        // dd($request->all());
+        // $row = $request->all();
+        // array_push($row, $association->id);
+
+        $name = $request->name;
+        $description = $request->description;
+        $invite_type_id = $request->invite_type_id;
+
+        $association->events()->find($event->id)->update(compact('name', 'description', 'invite_type_id'));
+
+        return redirect()->route('association.show', $association);
     }
 
     /**
@@ -78,8 +100,10 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Association $association, Event $event)
     {
-        //
+        $association->events()->find($event->id)->delete();
+
+        return redirect()->route('association.show', $association);
     }
 }

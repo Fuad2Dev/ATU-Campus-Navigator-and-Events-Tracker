@@ -109,7 +109,7 @@
             <i class="fas fa-plus"></i>
         </div> --}}
 
-        <x-tab.nav name='events' icon_class='fas fa-calendar-alt' count='5' />
+        <x-tab.nav name='events' icon_class='fas fa-calendar-alt' count='{{$association->events->count()}}' />
         @if ($association->myRoleId() == 1 || $association->myRoleId() == 2)
             <x-tab.nav name='requests' icon_class='fas fa-sync-alt ' :count='$requests->count()' />
         @endif
@@ -146,21 +146,16 @@
         </x-tab.content>
 
         <x-tab.content for='events'>
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
-            <x-cards.feed :logo="false" :editable="true" />
+            @foreach ($association->events as $event)
+                <x-cards.feed :logo="false" :editable="true" :event="$event" :association="$association" />
+            @endforeach
+           
+
+            <div class="p-4"></div>
+
+            <a href="{{route('association.event.create', $association)}}" type="button" class="btn btn-primary btn-lg btn-floating position-fixed bottom-2 end-2">
+                <i class="fas fa-plus"></i>
+            </a>
         </x-tab.content>
 
         @if ($association->myRoleId() == 1 || $association->myRoleId() == 2)
@@ -174,6 +169,8 @@
             </x-tab.content>
 
         @endif
+
+
     </x-tab.contents>
 
 </x-layout>

@@ -15,6 +15,10 @@ class Association extends Model
 
     protected $fillable = ['id', 'name', 'description'];
 
+    public function events(){
+        return $this->hasMany(Event::class);
+    }
+
     public function associates()
     {
         return $this->belongsToMany(User::class)->withPivot('role_id')->withTimestamps();

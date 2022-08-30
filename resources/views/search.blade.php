@@ -21,7 +21,7 @@
 
     <x-tab.navs>
         <x-tab.nav name="associations" count="{{$associations->count()}}" icon_class="fas fa-users" class="active" />
-        <x-tab.nav name="users" count="{{$events->count()}}" icon_class="fas fa-user" />
+        <x-tab.nav name="users" count="{{$users->count()}}" icon_class="fas fa-user" />
     </x-tab.navs>
 
     <x-tab.contents>
@@ -32,28 +32,9 @@
         </x-tab.content>
 
         <x-tab.content for="users">
-            {{-- <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            .
-
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user />
-            <x-cards.user /> --}}
+            @foreach ($users as $user)
+                <x-cards.invite :user="$user" />
+            @endforeach
         </x-tab.content>
     </x-tab.contents>
 </x-layout>

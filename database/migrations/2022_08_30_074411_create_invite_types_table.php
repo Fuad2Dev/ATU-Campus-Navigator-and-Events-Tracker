@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('invite_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->mediumText('description')->nullable();
-
-            $table->string('association_id')->constrained()->onDelete('cascade');
-            $table->foreign('association_id')->references('id')->on('associations');
-            
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('invite_types');
     }
 };

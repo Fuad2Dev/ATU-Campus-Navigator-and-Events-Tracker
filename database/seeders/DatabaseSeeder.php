@@ -46,6 +46,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(NotificationTypeSeeder::class);
 
-        // $this->call(AssociationSeeder::class);
+        $this->call(InviteTypeSeeder::class);
     }
 }

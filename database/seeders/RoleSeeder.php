@@ -34,5 +34,10 @@ class RoleSeeder extends Seeder
             'id' => 4,
             'description' => 'pending'
         ]);
+
+        Role::factory()->create([
+            'id' => 5,
+            'description' => 'invited'
+        ]);
     }
 }
