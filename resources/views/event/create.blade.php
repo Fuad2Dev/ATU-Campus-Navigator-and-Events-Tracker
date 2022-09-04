@@ -18,7 +18,7 @@
 
 
         <div class="d-flex container justify-content-between">
-            <div class="btn btn-danger">Cancel</div>
+            <a href="{{route('association.show', $association)}}" class="btn btn-danger">Cancel</a>
             
             <input class="btn btn-primary" type="submit" value="Create">
         </div>

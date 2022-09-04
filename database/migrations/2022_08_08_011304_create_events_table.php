@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->string('association_id')->constrained()->onDelete('cascade');
             $table->foreign('association_id')->references('id')->on('associations');
+
+            $table->timestamp('time');
             
             $table->timestamps();
         });

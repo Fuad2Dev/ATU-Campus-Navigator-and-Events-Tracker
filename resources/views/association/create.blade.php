@@ -19,7 +19,7 @@
         <div class="p-2"></div>
 
         <div class="d-flex container justify-content-between">
-            <div class="btn btn-danger">Cancel</div>
+            <a href="{{route('home')}}" class="btn btn-danger">Cancel</a>
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </form>

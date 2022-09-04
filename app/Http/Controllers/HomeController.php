@@ -23,7 +23,7 @@ class HomeController extends Controller
         foreach ($associations as $association) {
             $events->add($association->events);
         }
-        return $events->first();
+        return $events;
     }
 
 }
