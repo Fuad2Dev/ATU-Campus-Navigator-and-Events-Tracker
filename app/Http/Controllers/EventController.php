@@ -20,7 +20,7 @@ class EventController extends Controller
     {
         // dd(Carbon::now());
         $inviteTypes = InviteType::all();
-        $now = Carbon::now();
+        $now = Carbon::now()->addHours(3);
         if ($now->minute > 30) {
             $now->addHour();
             $now->minute(00);
