@@ -1,8 +1,8 @@
 @props([
-    'logo' => true,
+    'minified' => false,
     'editable' => false,
     'event',
-    'association'
+    'association',
 ])
 
 
@@ -10,18 +10,18 @@
 <div class="card row container m-auto border flex-column p-0 my-2">
     <div class="card-header col d-flex justify-content-between m-auto mt-2">
         {{-- logo --}}
-        @if ($logo)
+        @if (!$minified)
             <div>
                 <div class="p-0 text-center border rounded-circle" style="height: 50px; width: 50px; overflow: hidden;">
                     <img class="h-100" src="{{ asset('img/group-icon.jpg') }}" alt="">
                 </div>
             </div>
+
+            {{-- name --}}
+            <strong class="col p-2 d-flex align-items-end ">{{ $event->association->name }}</strong>
+        @else
+            <strong class="col p-2 d-flex">{{ $event->name }}</strong>
         @endif
-
-        {{-- name --}}
-        <strong
-            class="col p-2 d-flex @if ($logo) align-items-end @endif">{{ $event->association->name }}</strong>
-
         {{-- date-time --}}
         {{-- <div class="row flex-column ">
             <small class="d-flex justify-content-end col">{{ $event->created_at->format('M d') }}</small>
@@ -30,7 +30,9 @@
     </div>
     <div class="my-2">
         {{-- desc --}}
-        <strong>Event: </strong>{{ $event->name }} <br>
+        @if (!$minified)
+            <strong>Event: </strong>{{ $event->name }} <br>
+        @endif
         <strong>Date: </strong>{{ $event->date_time->format('l M d') }} <br>
         <strong>Time: </strong>{{ $event->date_time->format('h:i a') }} <br>
         <div class="p-2"></div>

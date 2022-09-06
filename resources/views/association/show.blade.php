@@ -147,7 +147,7 @@
 
         <x-tab.content for='events'>
             @foreach ($association->events as $event)
-                <x-cards.feed :logo="false" :editable="true" :event="$event" :association="$association" />
+                <x-cards.feed :logo="false" :minified="true" :event="$event" :association="$association" />
             @endforeach
            
 
