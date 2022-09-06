@@ -91,7 +91,7 @@
             @endswitch
 
             {{-- <div class="text-primary">edit</div> --}}
-            <small>created --/--/---</small>
+            <small><strong> created: </strong>{{$association->created_at->format('d-M-y')}}</small>
         </div>
 
         {{-- separator --}}
