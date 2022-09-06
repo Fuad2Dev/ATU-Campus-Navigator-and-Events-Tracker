@@ -6,9 +6,9 @@
 ])
 
 
-
-<div class="row container m-auto border flex-column p-0 my-2">
-    <div class="col d-flex justify-content-between m-auto mt-2">
+{{-- <div style="box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);" class="row container m-auto border flex-column p-0 my-2"> --}}
+<div class="card row container m-auto border flex-column p-0 my-2">
+    <div class="card-header col d-flex justify-content-between m-auto mt-2">
         {{-- logo --}}
         @if ($logo)
             <div>
@@ -20,31 +20,37 @@
 
         {{-- name --}}
         <strong
-            class="col p-2 d-flex @if ($logo) align-items-end @endif">{{ $event->name }}</strong>
+            class="col p-2 d-flex @if ($logo) align-items-end @endif">{{ $event->association->name }}</strong>
+
         {{-- date-time --}}
-        <div class="row flex-column ">
+        {{-- <div class="row flex-column ">
             <small class="d-flex justify-content-end col">{{ $event->created_at->format('M d') }}</small>
             <small class="d-flex justify-content-end col">{{ $event->created_at->format('h:i a') }}</small>
-        </div>
+        </div> --}}
     </div>
-    <div class="mt-2">
+    <div class="my-2">
         {{-- desc --}}
-        {{ $event->description }}
+        <strong>Event: </strong>{{ $event->name }} <br>
+        <strong>Date: </strong>{{ $event->date_time->format('l M d') }} <br>
+        <strong>Time: </strong>{{ $event->date_time->format('h:i a') }} <br>
+        <div class="p-2"></div>
+        <em class="p-3"> ~ {{ $event->description }} </em>
     </div>
     <div
         class="d-flex @if ($editable) justify-content-between @else justify-content-center @endif col my-2">
         @if ($editable)
-        <form action="{{route('association.event.destroy', compact('association', 'event'))}}" method="post">
-            @csrf
-            @method('delete')
+            <form action="{{ route('association.event.destroy', compact('association', 'event')) }}" method="post">
+                @csrf
+                @method('delete')
                 <input type="submit" class="btn btn-danger" value="Delete">
-        </form>
+            </form>
         @endif
-        
+
         <div class="btn btn-info">Locate</div>
 
         @if ($editable)
-            <a href="{{route('association.event.edit', compact('event', 'association'))}}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('association.event.edit', compact('event', 'association')) }}"
+                class="btn btn-primary">Edit</a>
         @endif
 
 

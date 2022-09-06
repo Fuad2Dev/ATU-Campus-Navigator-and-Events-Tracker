@@ -66,6 +66,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Notification::class)->withPivot('opened');
     }
 
+    public function events(){
+        return $this->hasManyThrough(Event::class, AssociationUser::class, 'user_id', 'association_id', 'id', 'association_id');
+    }
+
     
 
 }

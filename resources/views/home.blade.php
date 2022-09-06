@@ -8,8 +8,8 @@
         <x-tab.navs>
 
             <x-tab.nav name="association" icon_class="fas fa-users" count='{{$my->associations->count()}}' />
-            <x-tab.nav name="feed" icon_class="fas fa-rss" count='3' class="active"/>
-            <x-tab.nav name="notification" icon_class="fas fa-bell" count='+8' />
+            <x-tab.nav name="feed" icon_class="fas fa-rss" count='{{ $my->events->count() }}' class="active"/>
+            <x-tab.nav name="notification" icon_class="fas fa-bell" count='{{ $notifications->count() }}' />
 
         </x-tab.navs>
         <!-- Tabs navs -->
@@ -28,7 +28,7 @@
             </x-tab-content>
 
             <x-tab.content for="feed" class="show active">
-                @foreach ($events as $event)
+                @foreach ($my->events as $event)
                 <x-cards.feed :event="$event"/>
                 @endforeach
             </x-tab-content>

@@ -54,7 +54,7 @@
 
 
     <!-- Custom scripts -->
-    @switch($page)
+    {{-- @switch($page)
         @case('event.create')
             <script>
                 $(document).ready(function() {
@@ -66,7 +66,7 @@
         @break
 
         @default
-    @endswitch
+    @endswitch --}}
     
 </body>
 

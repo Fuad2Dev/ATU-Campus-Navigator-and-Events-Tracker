@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Association;
 use App\Models\InviteType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -17,9 +18,18 @@ class EventController extends Controller
      */
     public function create(Association $association)
     {
+        // dd(Carbon::now());
         $inviteTypes = InviteType::all();
-        // dd($inviteTypes);
-        return view('event.create', compact('association', 'inviteTypes'));
+        $now = Carbon::now();
+        if ($now->minute > 30) {
+            $now->addHour();
+            $now->minute(00);
+        } else {
+            $now->minute(30);
+        }
+        // dd($now->format('Y-m-d h:i'));
+
+        return view('event.create', compact('association', 'inviteTypes', 'now'));
     }
 
     /**
@@ -28,18 +38,26 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Association $association,Request $request)
+    public function store(Association $association, Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required',
-        ],[
-            'required' => 'required'
-        ]);
-        // dd($request->all());
-        // $row = $request->all();
-        // array_push($row, $association->id);
-
-        $association->events()->create($request->all());
+        $this->validate(
+            $request,
+            [
+                'name' => 'required',
+                'time' => 'after: 6:00| before: 22:00',
+                'date_time' => 'required|after:3 hours',
+            ],
+            [
+                'name.required' => 'required',
+                'time.after' => 'too early to hold an event',
+                'time.before' => 'too late to hold an event',
+                'date_time.after' => 'time >= 3 hours',
+                ]
+            );
+            
+            // dd($request->all());
+        $event = $association->events()->create($request->all());
+        // dd($event);
 
         return redirect()->route('association.show', $association);
     }
@@ -63,8 +81,8 @@ class EventController extends Controller
      */
     public function edit(Association $association, Event $event)
     {
-        $inviteTypes = InviteType::all();
-        return view('event.edit', compact('event', 'association', 'inviteTypes'));
+        $now = Carbon::now();
+        return view('event.edit', compact('event', 'association', 'now'));
     }
 
     /**
@@ -76,20 +94,24 @@ class EventController extends Controller
      */
     public function update(Request $request, Association $association, Event $event)
     {
-        $this->validate($request,[
-            'name' => 'required',
-        ],[
-            'required' => 'required'
-        ]);
-        // dd($request->all());
-        // $row = $request->all();
-        // array_push($row, $association->id);
+        // dd($request);
+        $this->validate(
+            $request,
+            [
+                'name' => 'required',
+                'time' => 'after: 6:00| before: 22:00',
+                'date_time' => 'required|after:grace_period',
+            ],
+            [
+                'name.required' => 'required',
+                'time.after' => 'too early to hold an event',
+                'time.before' => 'too late to hold an event',
+                'date_time.after' => 'time >= 3 created date',
+            ]
+        );
 
-        $name = $request->name;
-        $description = $request->description;
-        $invite_type_id = $request->invite_type_id;
 
-        $association->events()->find($event->id)->update(compact('name', 'description', 'invite_type_id'));
+        $association->events()->find($event->id)->update($request->all());
 
         return redirect()->route('association.show', $association);
     }
