@@ -24,34 +24,20 @@ class SearchController extends Controller
         ]);
         $keyWord = request('search');
 
-        $associations = Str::startsWith($keyWord, '#') ?
-
-            Association::query()
-            ->where('id', 'LIKE', "%{$keyWord}%")
-            ->get() :
-            Association::query()
-            ->where('name', 'LIKE', "%{$keyWord}%")
-            ->get();
-
-        $users = Str::startsWith($keyWord, '#') ?
-
-            User::query()
-            ->where('id', 'LIKE', "%{$keyWord}%")
-            ->get() :
-            User::query()
-            ->where('first_name', 'LIKE', "%{$keyWord}%")
-            ->orWhere('last_name', 'LIKE', "%{$keyWord}%")
-            ->get();
-
-
-        // $events = Str::startsWith($keyWord, '#') ?
-        //     Event::query()
-        //     ->where('id', 'LIKE', "%{$keyWord}%")
-        //     ->get() :
-        //     Event::query()
-        //     ->where('name', 'LIKE', "%{$keyWord}%")
-        //     ->get();
-
-        return view('search', compact('associations', 'users'));
+        if (Str::startsWith($keyWord, '#')) {
+            $keyWord = substr($keyWord, 1);
+            $associations = Association::query()
+                ->where('id', 'LIKE', "%{$keyWord}%")
+                ->get();
+        } else {
+            $associations = Association::query()
+                ->where('name', 'LIKE', "%{$keyWord}%")
+                ->get();
+        }
+        
+        return view('search', compact('associations'));
     }
+
+    
+
 }

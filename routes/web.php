@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 
 
     // ASSOCIATION
-    Route::get('association/{association}/accept/{user}', [AssociationController::class, 'accept'])->name('association.accept');
+    Route::get('association/{association}/accept/{user}/request', [AssociationController::class, 'acceptRequest'])->name('association.accept.request');
     Route::get('association/{association}/cancel', [AssociationController::class, 'cancel'])->name('association.cancel');
     Route::get('association/{association}/decline/{user}', [AssociationController::class, 'decline'])->name('association.decline');
     Route::get('association/{association}/promote/{user}', [AssociationController::class, 'promote'])->name('association.promote');
@@ -64,7 +64,11 @@ Route::middleware('auth')->group(function () {
     Route::get('association/{association}/remove/{user}', [AssociationController::class, 'remove'])->name('association.remove');
     Route::get('association/{association}/request', [AssociationController::class, 'request'])->name('association.request');
     Route::get('association/{association}/leave', [AssociationController::class, 'leave'])->name('association.leave');
-
+    Route::get('association/{association}/add', [AssociationController::class, 'add'])->name('association.add');
+    Route::post('association/{association}/search', [AssociationController::class, 'search'])->name('association.search');
+    Route::get('association/{association}/user/{user}/invite', [AssociationController::class, 'invite'])->name('association.invite');
+    Route::get('association/{association}/invite/accept', [AssociationController::class, 'acceptInvite'])->name('association.invite.accept');
+    
     Route::resource('association', AssociationController::class)->except([
         'index'
     ])->missing(function(){return redirect()->route('home');});

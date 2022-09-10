@@ -16,9 +16,52 @@ class AssociationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function add(Association $association)
     {
-        //
+        $users = collect();
+        $invited = $association->associates()->wherePivot('role_id', 5)->get();
+        
+        return view('association.invite', compact('association', 'users', 'invited'));
+    }
+    
+    public function invite(Association $association, User $user)
+    {
+        $association->allMembers()->attach($user->id, ['role_id' => 5]);
+        Notification::notify(4, $association->id, $user);
+
+        return redirect()->route('association.add', $association);
+    }
+
+    public function search(Request $request, Association $association)
+    {
+        $this->validate($request, [
+            'search' => 'required'
+        ], [
+            'required' => 'required'
+        ]);
+        $keyWord = request('search');
+
+        // Get All Aliens
+        $ids = $association->associates->pluck('id')->all();
+        $aliens = User::whereNotIn("id", $ids);
+
+        // Run Query Through Aliens
+        if (Str::startsWith($keyWord, '#')) {
+            $keyWord = substr($keyWord, 1);
+            $users = $aliens
+                ->where('id', 'LIKE', "%{$keyWord}%")
+                ->get();
+        } else {
+            $users = $aliens
+                ->where('first_name', 'LIKE', "%{$keyWord}%")
+                ->orWhere('last_name', 'LIKE', "%{$keyWord}%")
+                ->get();
+        }
+
+        // Get All Invited Users
+        $invited = $association->associates()->wherePivot('role_id', 5)->get();
+
+        return view('association.invite', compact('association', 'users', 'invited'));
     }
 
     /**
@@ -102,6 +145,7 @@ class AssociationController extends Controller
     {
         // eNU08n
         $association->delete();
+        $association->events()->delete();
 
         // notify
         Notification::notify(10, $association->id, $association->allMembers);
@@ -118,10 +162,25 @@ class AssociationController extends Controller
         return $code;
     }
 
-    public function accept(Association $association, User $user)
+    public function acceptRequest(Association $association, User $user)
     {
         // dd($user);
         Notification::notify(2, $association->id, $user);
+
+
+
+        $association->associates()->updateExistingPivot($user->id, ['role_id' => 3]);
+
+        // notify user
+
+        return redirect()->route('association.show', $association);
+    }
+    
+    public function acceptInvite(Association $association)
+    {
+        $user = auth()->user();
+        
+        Notification::notify(5, $association->id, $association->executives);
 
 
 

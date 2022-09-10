@@ -15,7 +15,8 @@ class Association extends Model
 
     protected $fillable = ['id', 'name', 'description'];
 
-    public function events(){
+    public function events()
+    {
         return $this->hasMany(Event::class);
     }
 
@@ -67,10 +68,10 @@ class Association extends Model
 
     public function executives()
     {
-        return $this->associates()->where(function($query){
+        return $this->associates()->where(function ($query) {
             $query
-            ->where('association_user.role_id', '=', 1)
-            ->orWhere('association_user.role_id', '=', 2);
+                ->where('association_user.role_id', '=', 1)
+                ->orWhere('association_user.role_id', '=', 2);
         });
     }
 
@@ -96,25 +97,32 @@ class Association extends Model
         // return $this->myRoleId();
         switch ($role_id) {
             case 1:
-                return $this->notifications->filter(function($notification, $key){
-                    return ($notification->id == 1 || $notification->id == 4); 
+                return $this->notifications->filter(function ($notification, $key) {
+                    return ($notification->id == 1 || $notification->id == 4);
                 });
                 break;
             case 2:
-                return $this->notifications->filter(function($notification, $key){
-                    return ($notification->id == 1 || $notification->id == 4 || $notification->id == 5); 
+                return $this->notifications->filter(function ($notification, $key) {
+                    return ($notification->id == 1 || $notification->id == 4 || $notification->id == 5);
                 });
                 break;
             case 3:
-                return $this->notifications->filter(function($notification, $key){
-                    return ($notification->id == 2 || $notification->id == 6); 
+                return $this->notifications->filter(function ($notification, $key) {
+                    return ($notification->id == 2 || $notification->id == 6);
                 });
                 // return $this->notifications->where('id', 2)->orWhere('id', 6);
                 break;
             case 4:
-                return $this->notifications->filter(function($notification, $key){
-                    return ($notification->id == 3 || $notification->id == 7 || $notification->id == 8); 
+                return $this->notifications->filter(function ($notification, $key) {
+                    return ($notification->id == 3 || $notification->id == 7 || $notification->id == 8);
                 });
         }
     }
+
+    public function pendingRequests()
+    {
+        return $this->associates->where('role_id', 4);
+    }
+
+    
 }

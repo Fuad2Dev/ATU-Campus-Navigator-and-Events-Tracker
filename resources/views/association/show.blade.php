@@ -82,6 +82,14 @@
                     </div>
                 @break
 
+                @case(5)
+                    <div>
+                        <a class="btn btn-success" href="{{route('association.invite.accept', $association)}}">
+                            Accept Invite
+                        </a>
+                    </div>
+                @break
+
                 @default
                     <div>
                         <a class="btn btn-success" href="{{ route('association.request', $association) }}">
@@ -140,9 +148,13 @@
                 <x-cards.user :user="$member" :role="$member->role($association->id)" :editable="true" :association="$association"
                     :hasCoAdmin="$hasCoAdmin" />
             @endforeach
-            {{-- members --}}
-            {{-- <x-cards.user role="co-admin"/>
-            <x-cards.user :editable='true' /> --}}
+            
+            
+            <div class="p-4"></div>
+
+            <a href="{{route('association.add', $association)}}" type="button" class="btn btn-primary btn-lg btn-floating position-fixed bottom-2 end-2">
+                <i class="fas fa-plus"></i>
+            </a>
         </x-tab.content>
 
         <x-tab.content for='events'>

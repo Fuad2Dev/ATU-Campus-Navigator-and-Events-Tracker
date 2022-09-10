@@ -1,5 +1,5 @@
 <x-layout>
-    <x-navbar :search='false' />
+    <x-navbar :search='false' page="search" />
 
     {{-- <div class="p-4">
         <x-form.text-box name="search" label="Search" />
@@ -9,19 +9,19 @@
         <x-form.text-box name="search" label="Search" :extend_right_icon="['class' => 'fas fa-search']" />
     </form>
     {{-- results --}}
-    <div class="row">
+    {{-- <div class="row">
         <div class="col d-flex align-items-center">
             <hr class="col">
         </div>
-        <strong class="col-4 d-flex align-items-center justify-content-center">Results (##)</strong>
+        <strong class="col-4 d-flex align-items-center justify-content-center">Results</strong>
         <div class="col d-flex align-items-center">
             <hr class="col">
         </div>
-    </div>
+    </div> --}}
 
     <x-tab.navs>
         <x-tab.nav name="associations" count="{{$associations->count()}}" icon_class="fas fa-users" class="active" />
-        <x-tab.nav name="users" count="{{$users->count()}}" icon_class="fas fa-user" />
+        {{-- <x-tab.nav name="users" count="{{$users->count()}}" icon_class="fas fa-user" /> --}}
     </x-tab.navs>
 
     <x-tab.contents>
@@ -31,10 +31,10 @@
             @endforeach
         </x-tab.content>
 
-        <x-tab.content for="users">
+        {{-- <x-tab.content for="users">
             @foreach ($users as $user)
                 <x-cards.invite :user="$user" />
             @endforeach
-        </x-tab.content>
+        </x-tab.content> --}}
     </x-tab.contents>
 </x-layout>
