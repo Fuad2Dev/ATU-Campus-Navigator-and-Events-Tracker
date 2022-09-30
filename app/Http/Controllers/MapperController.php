@@ -14,7 +14,7 @@ class MapperController extends Controller
      */
     public function index()
     {
-        //
+        return view('mapper.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MapperController extends Controller
      */
     public function create()
     {
-        //
+        return view('mapper.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class MapperController extends Controller
      */
     public function edit(Mapper $mapper)
     {
-        //
+        return view('mapper.edit');
     }
 
     /**
