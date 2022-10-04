@@ -26,9 +26,9 @@
     <script>
         function geoFindMe() {
 
-            const latitude = document.querySelector('#status');
-            const longitude = document.querySelector('#map-link');
-            const altitude = document.querySelector('#map-link');
+            const latitude = document.querySelector('#latitude');
+            const longitude = document.querySelector('#longitude');
+            const altitude = document.querySelector('#altitude');
             const msg = document.querySelector('#msg');
 
             msg.textContent = "";
