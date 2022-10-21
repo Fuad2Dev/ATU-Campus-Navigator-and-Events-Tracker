@@ -1,6 +1,5 @@
 <x-layout page="event.create">
 
-    <x-navbar />
 
     <form class="container mx-auto row g-4 mt-4" method="POST" id="store"
         action="{{ route('association.event.store', $association) }}">

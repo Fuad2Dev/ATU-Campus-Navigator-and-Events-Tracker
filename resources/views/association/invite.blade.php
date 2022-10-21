@@ -1,5 +1,4 @@
 <x-layout>
-    <x-navbar :search='false' page="invite"/>
 
     <form action="{{route('association.search', $association)}}" method="post" class="p-4">
         @csrf

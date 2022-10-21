@@ -1,13 +1,7 @@
 <x-layout>
-    <!-- nav -->
-    <x-navbar />
-    <!-- nav -->
-
     <!-- /association -->
     <div class="container row mt-2">
-        <div class="col-12">
-            <hr class="col-11 mx-auto">
-        </div>
+        
         {{-- img --}}
         <div class="col-4 d-flex justify-content-center">
             <x-inc.association-img />

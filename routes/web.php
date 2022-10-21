@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MapperController;
 use App\Http\Controllers\SearchController;
 use App\Models\Association;
 use Illuminate\Console\Scheduling\Event;
@@ -43,6 +44,9 @@ Route::middleware('guest')->group(function () {
 // // // // // // // // // // // // // //
 
 Route::middleware('auth')->group(function () {
+
+    //MAP
+    Route::get('/map/2d', [MapperController::class, '_2d'])->name('map.2d');
 
     // HOME
     Route::get('/home', [HomeController::class, 'index'])->name('home');
