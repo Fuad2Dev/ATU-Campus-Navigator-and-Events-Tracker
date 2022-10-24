@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
     //MAP
     Route::get('/map/2d', [MapperController::class, '_2d'])->name('map.2d');
+    Route::get('/map/3d', [MapperController::class, '_3d'])->name('map.3d');
 
     // HOME
     Route::get('/home', [HomeController::class, 'index'])->name('home');

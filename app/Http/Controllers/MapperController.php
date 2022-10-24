@@ -12,4 +12,8 @@ class MapperController extends Controller
         
         return view('map.2d', compact('map'));
     }
+    public function _3d(){
+        
+        return view('map.3d');
+    }
 }
