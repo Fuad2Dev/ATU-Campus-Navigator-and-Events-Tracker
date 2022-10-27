@@ -110,7 +110,7 @@
                             {
                                 'type': 'Feature',
                                 'properties': {
-                                    'description': '{!! $place->description !!}',
+                                    'description': `{!! $place->description !!} <img style="width: 100%" src="{{asset($place->icon)}}" alt=""> `,
                                     'icon': 'theatre-15'
                                 },
                                 'geometry': {

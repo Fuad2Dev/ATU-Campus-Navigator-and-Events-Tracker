@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index(){
         $my = User::find(auth()->user()->id);
         $notifications = Notification::show($my->notifications);
-
+        
         return view('home', compact( 'my', 'notifications'));
     }
 
