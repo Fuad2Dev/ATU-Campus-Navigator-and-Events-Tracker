@@ -1,5 +1,5 @@
 <x-layout >
-    <x-navbar />
+    {{-- <x-navbar /> --}}
 
     <div class="d-flex justify-content-center position-relative container mb-4">
         <x-inc.association-img  size='100'/>
