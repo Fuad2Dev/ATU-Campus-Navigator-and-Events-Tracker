@@ -1,6 +1,6 @@
 <x-layout page="event.create">
 
-    <x-navbar />
+    {{-- <x-navbar /> --}}
 
     <form id="update" class="container mx-auto row g-4 mt-4" method="POST" action="{{route('association.event.update', compact('association', 'event'))}}">
         @csrf
