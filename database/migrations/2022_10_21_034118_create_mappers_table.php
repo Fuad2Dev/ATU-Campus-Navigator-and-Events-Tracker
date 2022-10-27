@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->text('lat');
             $table->text('lon');
-            $table->text('icon')->default('img/lodge.jpg');
+            $table->string('icon')->default('img/lodge.jpg');
             $table->timestamps();
         });
     }
