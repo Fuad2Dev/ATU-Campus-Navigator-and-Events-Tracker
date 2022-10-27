@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\mapper;
+use App\Models\Mapper;
 use Illuminate\Http\Request;
 
 class MapperController extends Controller

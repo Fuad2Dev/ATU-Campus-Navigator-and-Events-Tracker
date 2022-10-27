@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MapperController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MapperController;
@@ -51,6 +52,8 @@ Route::middleware('auth')->group(function () {
 
     // HOME
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::resource('mapper', MapperController::class);
 
     // SEARCH
     Route::name('search')->prefix('search')->group(function () {
