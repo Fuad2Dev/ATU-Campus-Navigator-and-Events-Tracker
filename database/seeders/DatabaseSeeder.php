@@ -26,26 +26,16 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::factory()->create([
-            'first_name' => 'Fuad',
-            'last_name' => 'Muhammed',
-            'email' => 'fuad2dev@gmail.com',
-            'id' => '01193430D',
-            'password' => Hash::make('123456789')
-        ]);
+        
 
-        User::factory()->create([
-            'first_name' => 'Fuad',
-            'last_name' => 'Senpai',
-            'email' => 'tchnvirus@gmail.com',
-            'id' => '01193431D',
-            'password' => Hash::make('123456789')
-        ]);
+        $this->call(UserSeeder::class);
 
         $this->call(RoleSeeder::class);
 
         $this->call(NotificationTypeSeeder::class);
 
         $this->call(InviteTypeSeeder::class);
+
+        $this->call(LocationSeeder::class);
     }
 }
