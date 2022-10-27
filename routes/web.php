@@ -7,7 +7,6 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\MapperController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MapperController;
 use App\Http\Controllers\SearchController;
 use App\Models\Association;
 use Illuminate\Console\Scheduling\Event;
