@@ -23,6 +23,10 @@ use Illuminate\Support\Str;
 |
 */
 
+Route::get('/directions', function(){
+    return view('directions');
+});
+
 
 Route::middleware('guest')->group(function () {
 
