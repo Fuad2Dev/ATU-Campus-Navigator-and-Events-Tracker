@@ -1,9 +1,26 @@
-.c-blue{ color: #0C1BEB;}
-.bg-blue{ background-color: #0C1BEB;}
-.bg-gray{ background-color: #c4c4c4;}
-.pr-2{padding-right: 8px;}
-.bottom-2{bottom:2%!important}
-.end-2{right:2%!important}
+.c-blue {
+    color: #0C1BEB;
+}
+
+.bg-blue {
+    background-color: #0C1BEB;
+}
+
+.bg-gray {
+    background-color: #c4c4c4;
+}
+
+.pr-2 {
+    padding-right: 8px;
+}
+
+.bottom-2 {
+    bottom: 2% !important
+}
+
+.end-2 {
+    right: 2% !important
+}
 
 button {
     background-color: transparent;
@@ -19,7 +36,17 @@ body {
     min-height: fill-available;
     min-height: -webkit-fill-available;
 }
+
 html {
     height: fill-available;
     height: -webkit-fill-available;
 }
+
+
+/* @media(min-width:426px) {
+    body {
+        width: 50vw;
+        margin: auto;
+        overflow-x: hidden;
+    }
+} */

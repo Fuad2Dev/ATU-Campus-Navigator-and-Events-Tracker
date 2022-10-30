@@ -24,8 +24,7 @@
         integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 </head class="bg-white" style="height: 100vh; overflow: hidden">
 
 <body>

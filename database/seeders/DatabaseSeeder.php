@@ -37,5 +37,11 @@ class DatabaseSeeder extends Seeder
         $this->call(InviteTypeSeeder::class);
 
         $this->call(LocationSeeder::class);
+
+        $this->call(BlockSeeder::class);
+
+        $this->call(PlaceSeeder::class);
+
+        $this->call(PlaceTypeSeeder::class);
     }
 }

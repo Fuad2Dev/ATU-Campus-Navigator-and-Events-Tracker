@@ -47,12 +47,16 @@
         @default
     @endswitch
 
+    <style>
+
+    </style>
+
 </head>
 
 <body {{ $attributes }}>
 
     <!-- Start your project here-->
-    <div class="d-flex flex-column vh-100">
+    <div class="d-flex flex-column vh-100 w-100">
         <!-- nav -->
         <div class="">
             <x-sidebar />
