@@ -44,6 +44,30 @@
             [-0.203386, 5.557096] // Northeast coordinates
         ];
 
+        //////////////////////////////////////////////////////////////////////////
+
+
+        // Add geolocate control to the map.
+        // Initialize the geolocate control.
+        // var geolocate = new mapboxgl.GeolocateControl({
+        //     positionOptions: {
+        //         enableHighAccuracy: true
+        //     },
+        //     trackUserLocation: true
+        // });
+        // // Add the control to the map.
+        // map.addControl(geolocate);
+        // map.on('load', function() {
+        //     geolocate.trigger();
+        // });
+        // geolocate.on('geolocate', locateUser);
+
+        // function locateUser(e) {
+        //     console.log('A geolocate event has occurred.');
+        //     console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude)
+        //     geolocate.off('geolocate', null);
+        // }
+        //////////////////////////////////////////////////////////////////////////
         const geojson = {
             'type': 'FeatureCollection',
             'features': [
@@ -72,6 +96,21 @@
             zoom: 12, // starting zoom
             maxBounds: bounds // Set the map's geographical boundaries.
         });
+
+        // Add geolocate control to the map.
+        var geolocate = new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+        })
+
+        map.addControl(geolocate);
+
+
 
 
 
@@ -134,27 +173,9 @@
                 }
             });
 
-            // Add geolocate control to the map.
-            let geolocate = new mapboxgl.GeolocateControl({
-                positionOptions: {
-                    enableHighAccuracy: true
-                },
-                // When active the map will receive updates to the device's location as it changes.
-                trackUserLocation: true,
-                // Draw an arrow next to the location dot to indicate which direction the device is heading.
-                showUserHeading: true
-            })
-
-            map.addControl(geolocate);
-
             geolocate.trigger();
 
-            geolocate.on("geolocate", locateUser);
 
-            function locateUser(e) {
-                console.log("A geolocate event has occurred.");
-                console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
-            }
 
             // When a click event occurs on a feature in the places layer, open a popup at the
             // location of the feature, with description HTML from its properties.
@@ -186,6 +207,13 @@
                 map.getCanvas().style.cursor = '';
             });
         });
+
+        geolocate.on("geolocate", locateUser);
+
+        function locateUser(e) {
+            console.log("A geolocate event has occurred.");
+            console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
+        }
     </script>
 
 </body>
