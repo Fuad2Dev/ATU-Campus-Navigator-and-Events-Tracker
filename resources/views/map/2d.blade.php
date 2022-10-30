@@ -135,17 +135,19 @@
             });
 
             // Add geolocate control to the map.
-            map.addControl(
-                new mapboxgl.GeolocateControl({
-                    positionOptions: {
-                        enableHighAccuracy: true
-                    },
-                    // When active the map will receive updates to the device's location as it changes.
-                    trackUserLocation: true,
-                    // Draw an arrow next to the location dot to indicate which direction the device is heading.
-                    showUserHeading: true
-                })
-            );
+            let geolocate = new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                // When active the map will receive updates to the device's location as it changes.
+                trackUserLocation: true,
+                // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                showUserHeading: true
+            })
+
+            map.addControl(geolocate);
+
+            geolocate.trigger();
 
             // When a click event occurs on a feature in the places layer, open a popup at the
             // location of the feature, with description HTML from its properties.
@@ -177,6 +179,13 @@
                 map.getCanvas().style.cursor = '';
             });
         });
+
+        geolocate.on("geolocate", locateUser);
+
+        function locateUser(e) {
+            console.log("A geolocate event has occurred.");
+            console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
+        }
     </script>
 
 </body>
