@@ -42,7 +42,7 @@ class BlockSeeder extends Seeder
             ],
             3 => [
               'id' => '4',
-              'name' => 'BTECH',
+              'name' => 'BTECH BLOCK',
               'lat' => '5.5539524',
               'lon' => '-0.2059355',
               'icon' => 'img/btech.jpg',

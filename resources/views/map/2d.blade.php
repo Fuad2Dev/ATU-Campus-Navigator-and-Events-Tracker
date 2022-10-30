@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    
+
     <style>
         .mapboxgl-popup {
             max-width: 400px;
@@ -36,7 +36,8 @@
     </style>
     <div id="map"></div>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZnVhZGNvZGVzIiwiYSI6ImNsOWNxbXlmNDAwa2wzcXA5eWNpZTBueDcifQ.MSPG62_9J-q_Nw3QhCwPXw';
+        mapboxgl.accessToken =
+            'pk.eyJ1IjoiZnVhZGNvZGVzIiwiYSI6ImNsOWNxbXlmNDAwa2wzcXA5eWNpZTBueDcifQ.MSPG62_9J-q_Nw3QhCwPXw';
         // Set bounds to San Francisco, California.
         const bounds = [
             [-0.208550, 5.550975], // Southwest coordinates
@@ -50,13 +51,13 @@
                     {
                         'type': 'Feature',
                         'properties': {
-                            'message': '{{$place->location}}',
+                            'message': '{{ $place->location }}',
                             'iconSize': [40, 40],
-                            'icon': '{{asset($place->icon)}}'
+                            'icon': '{{ asset($place->icon) }}'
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [{{$place->lon}}, {{$place->lat}}]
+                            'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
                         }
                     },
                 @endforeach
@@ -110,12 +111,12 @@
                             {
                                 'type': 'Feature',
                                 'properties': {
-                                    'description': `{!! $place->description !!} <img style="width: 100%" src="{{asset($place->icon)}}" alt=""> `,
+                                    'description': `{!! $place->description !!} <img style="width: 100%" src="{{ asset($place->icon) }}" alt=""> `,
                                     'icon': 'theatre-15'
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [{{$place->lon}}, {{$place->lat}}]
+                                    'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
                                 }
                             },
                         @endforeach
@@ -132,6 +133,19 @@
                     'icon-allow-overlap': true
                 }
             });
+
+            // Add geolocate control to the map.
+            map.addControl(
+                new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    // When active the map will receive updates to the device's location as it changes.
+                    trackUserLocation: true,
+                    // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                    showUserHeading: true
+                })
+            );
 
             // When a click event occurs on a feature in the places layer, open a popup at the
             // location of the feature, with description HTML from its properties.
@@ -163,7 +177,6 @@
                 map.getCanvas().style.cursor = '';
             });
         });
-
     </script>
 
 </body>

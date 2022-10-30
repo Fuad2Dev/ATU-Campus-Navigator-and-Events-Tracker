@@ -21,7 +21,7 @@
 
     <x-tab.navs>
         <x-tab.nav name="associations" count="{{ $associations->count() }}" icon_class="fas fa-users" class="active" />
-        <x-tab.nav name="places" count="3" icon_class="fas fa-map-marker-alt fa-2x" />
+        <x-tab.nav name="locations" count="{{ $locations->count() }}" icon_class="fas fa-map-marker-alt fa-2x" />
         {{-- <x-tab.nav name="users" count="{{$users->count()}}" icon_class="fas fa-user" /> --}}
     </x-tab.navs>
 
@@ -32,16 +32,14 @@
             @endforeach
         </x-tab.content>
 
-        <x-tab.content for="places">
-            <x-cards.place  />
-            <x-cards.place  />
-            <x-cards.place  />
-            <x-cards.place  />
+        <x-tab.content for="locations">
+            @foreach ($locations as $location)
+                <x-cards.place :location="$location"/>
+            @endforeach
 
             <div class="p-4"></div>
 
-            <a href="" type="button"
-                class="btn btn-primary btn-lg  position-fixed bottom-2 end-2">
+            <a href="" type="button" class="btn btn-primary btn-lg  position-fixed bottom-2 end-2">
                 Show on map
             </a>
         </x-tab.content>
