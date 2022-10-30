@@ -149,6 +149,13 @@
 
             geolocate.trigger();
 
+            geolocate.on("geolocate", locateUser);
+
+            function locateUser(e) {
+                console.log("A geolocate event has occurred.");
+                console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
+            }
+
             // When a click event occurs on a feature in the places layer, open a popup at the
             // location of the feature, with description HTML from its properties.
             map.on('click', 'places', (e) => {
@@ -179,13 +186,6 @@
                 map.getCanvas().style.cursor = '';
             });
         });
-
-        geolocate.on("geolocate", locateUser);
-
-        function locateUser(e) {
-            console.log("A geolocate event has occurred.");
-            console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
-        }
     </script>
 
 </body>
