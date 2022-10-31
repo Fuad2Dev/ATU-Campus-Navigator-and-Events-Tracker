@@ -50,7 +50,7 @@ class SearchController extends Controller
             $locations = collect($block)->merge($places);
 
         }
-
+        // dd($locations);
         return view('search', compact('associations', 'locations'));
     }
 }

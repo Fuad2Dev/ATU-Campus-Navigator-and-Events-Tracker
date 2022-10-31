@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/direction/2D/place/{place}', [DirectionController::class, '_2dPlace'])->name('direction.2d.place');
+    Route::get('/direction/AR/place/{cords}', [DirectionController::class, 'ar'])->name('ar');
     Route::get('/direction/2D/block/{block}', [DirectionController::class, '_2dBlock'])->name('direction.2d.block');
 
 

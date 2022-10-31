@@ -7,6 +7,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
     <style>
         body {
             margin: 0;
@@ -34,6 +37,7 @@
         }
     </style>
     <div id='map'></div>
+    <a id="ar" class="btn btn-primary position-absolute end-3 bottom-3">AR</a>
     <script>
         // add the JavaScript here
         mapboxgl.accessToken =
@@ -69,6 +73,9 @@
             const json = await query.json();
             const data = json.routes[0];
             const route = data.geometry.coordinates;
+            var a = document.getElementById('ar'); //or grab it by tagname etc
+            a.href = "{{URL::to('/')}}/direction/AR/place/" + route;
+            console.log(a.href);
             const geojson = {
                 type: 'Feature',
                 properties: {},
@@ -117,20 +124,18 @@
 
         const geojson = {
             'type': 'FeatureCollection',
-            'features': [
-                    {
-                        'type': 'Feature',
-                        'properties': {
-                            'message': '{{ $place->name }}',
-                            'iconSize': [40, 40],
-                            'icon': '{{ asset($place->icon) }}'
-                        },
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
-                        }
-                    },
-            ]
+            'features': [{
+                'type': 'Feature',
+                'properties': {
+                    'message': '{{ $place->name }}',
+                    'iconSize': [40, 40],
+                    'icon': '{{ asset($place->icon) }}'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
+                }
+            }, ]
         };
 
         map.on('load', () => {
@@ -157,7 +162,7 @@
                     .addTo(map);
             }
 
-            
+
 
             map.addSource('places', {
                 // This GeoJSON contains features that include an "icon"
@@ -166,19 +171,17 @@
                 'type': 'geojson',
                 'data': {
                     'type': 'FeatureCollection',
-                    'features': [
-                            {
-                                'type': 'Feature',
-                                'properties': {
-                                    'description': `{!! $place->description !!} <img style="width: 100%" src="{{ asset($place->icon) }}" alt=""> `,
-                                    'icon': 'theatre-15'
-                                },
-                                'geometry': {
-                                    'type': 'Point',
-                                    'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
-                                }
-                            },
-                    ]
+                    'features': [{
+                        'type': 'Feature',
+                        'properties': {
+                            'description': `{!! $place->description !!} <img style="width: 100%" src="{{ asset($place->icon) }}" alt=""> `,
+                            'icon': 'theatre-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
+                        }
+                    }, ]
                 }
             });
             // Add a layer showing the places.
@@ -257,7 +260,7 @@
             console.log('A geolocate event has occurred.');
             console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude)
             var start = [e.coords.longitude, e.coords.latitude];
-            var end = [{{$place->lon}}, {{$place->lat}}]
+            var end = [{{ $place->lon }}, {{ $place->lat }}]
             getRoute(start, end);
             geolocate.off('geolocate', null);
         }
