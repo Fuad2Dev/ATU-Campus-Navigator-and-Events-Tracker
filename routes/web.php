@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MapperController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Models\Association;
@@ -64,6 +65,9 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/', [SearchController::class, 'search']);
     });
+
+    Route::get('/direction/2D/place/{place}', [DirectionController::class, '_2dPlace'])->name('direction.2d.place');
+    Route::get('/direction/2D/block/{block}', [DirectionController::class, '_2dBlock'])->name('direction.2d.block');
 
 
     // ASSOCIATION

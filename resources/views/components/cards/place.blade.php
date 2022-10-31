@@ -15,9 +15,13 @@
         @if ($location->position)
             <em>~ position: {{ $location->position }} (facing the building)</em>
         @endif
-        <div class="d-flex col justify-content-between">
-            <em>~ 2 km</em>
-            <div class="btn btn-success">Direction</div>
+        <div class="d-flex col justify-content-end">
+            {{-- <em>~ 2 km</em> --}}
+            @isset($location->block)
+            <a href="{{ route('direction.2d.place', ['place' => $location]) }}" class="btn btn-success">Direction</a>
+            @else
+            <a href="{{ route('direction.2d.block', ['block' => $location]) }}" class="btn btn-success">Direction</a>
+            @endisset
         </div>
     </div>
 </a>

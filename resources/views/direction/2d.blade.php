@@ -23,6 +23,16 @@
 </head>
 
 <body>
+    <style>
+        .mapboxgl-popup {
+            max-width: 400px;
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        }
+
+        .marker {
+            border-radius: 50%;
+        }
+    </style>
     <div id='map'></div>
     <script>
         // add the JavaScript here
@@ -47,7 +57,7 @@
 
         // this is where the code for the next step will go
         // create a function to make a directions request
-        async function getRoute(start,end) {
+        async function getRoute(start, end) {
             // make a directions request using walking profile
             // an arbitrary start will always be the same
             // only the end or destination will change
@@ -105,9 +115,112 @@
         // Add the control to the map.
         map.addControl(geolocate);
 
+        const geojson = {
+            'type': 'FeatureCollection',
+            'features': [
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'message': '{{ $place->name }}',
+                            'iconSize': [40, 40],
+                            'icon': '{{ asset($place->icon) }}'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
+                        }
+                    },
+            ]
+        };
+
         map.on('load', () => {
             geolocate.trigger();
 
+            for (const marker of geojson.features) {
+
+                // console.log(marker.properties.icon);
+
+                // Create a DOM element for each marker.
+                const el = document.createElement('div');
+                const width = marker.properties.iconSize[0];
+                const height = marker.properties.iconSize[1];
+                el.className = 'marker';
+                el.style.backgroundImage = `url('${marker.properties.icon}')`;
+                el.style.width = `${width}px`;
+                el.style.height = `${height}px`;
+                el.style.backgroundSize = '100%';
+
+
+                // Add markers to the map.
+                new mapboxgl.Marker(el)
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(map);
+            }
+
+            
+
+            map.addSource('places', {
+                // This GeoJSON contains features that include an "icon"
+                // property. The value of the "icon" property corresponds
+                // to an image in the Mapbox Streets style's sprite.
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': [
+                            {
+                                'type': 'Feature',
+                                'properties': {
+                                    'description': `{!! $place->description !!} <img style="width: 100%" src="{{ asset($place->icon) }}" alt=""> `,
+                                    'icon': 'theatre-15'
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [{{ $place->lon }}, {{ $place->lat }}]
+                                }
+                            },
+                    ]
+                }
+            });
+            // Add a layer showing the places.
+            map.addLayer({
+                'id': 'places',
+                'type': 'symbol',
+                'source': 'places',
+                'layout': {
+                    'icon-image': '{icon}',
+                    'icon-allow-overlap': true
+                }
+            });
+
+            // When a click event occurs on a feature in the places layer, open a popup at the
+            // location of the feature, with description HTML from its properties.
+            map.on('click', 'places', (e) => {
+                // Copy coordinates array.
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const description = e.features[0].properties.description;
+
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(description)
+                    .addTo(map);
+            });
+
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.on('mouseenter', 'places', () => {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'places', () => {
+                map.getCanvas().style.cursor = '';
+            });
             // make an initial directions request that
             // starts and ends at the same location
             // getRoute(start);
