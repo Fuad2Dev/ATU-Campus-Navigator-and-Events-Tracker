@@ -23,7 +23,7 @@ class LocationSeeder extends Seeder
                 "description" => "<strong>New Hostel</strong><p>Dormitory for both boys and girls <br> Number of floors: 6 <br> Number of rooms: 137</p>",
                 "lat" => "5.5529",
                 "lon" => "-0.20607",
-                "icon" => "img/lodge.jpg",
+                "icon" => "img/new_hostel.jpg",
                 "created_at" => "NULL",
                 "updated_at" => "NULL"
             ],
@@ -32,7 +32,7 @@ class LocationSeeder extends Seeder
                 "description" => "<strong>Old Hostel</strong><p>Dormitory for both boys and girls <br> Number of floors: 6 <br> Number of rooms: 96</p>",
                 "lat" => "5.55241",
                 "lon" => "-0.20604",
-                "icon" => "img/lodge.jpg",
+                "icon" => "img/old_hostel.jpg",
                 "created_at" => "NULL",
                 "updated_at" => "NULL"
             ],
@@ -41,7 +41,7 @@ class LocationSeeder extends Seeder
                 "description" => "<strong>New Sports Centre</strong><p>Basketball and Tennis Field</p>",
                 "lat" => "5.552064",
                 "lon" => "-0.205929",
-                "icon" => "img/lodge.jpg",
+                "icon" => "img/sports_complex.jpg",
                 "created_at" => "NULL",
                 "updated_at" => "NULL"
             ],
@@ -59,7 +59,7 @@ class LocationSeeder extends Seeder
                 "description" => "<strong>Mosque</strong>",
                 "lat" => "5.5530805",
                 "lon" => "-0.2057411",
-                "icon" => "img/lodge.jpg",
+                "icon" => "img/mosque.jpg",
                 "created_at" => "NULL",
                 "updated_at" => "NULL"
             ],
@@ -68,7 +68,7 @@ class LocationSeeder extends Seeder
                 "description" => "<strong>Canteen block</strong><p> <br> Number of floors: 4</p>",
                 "lat" => "5.5529024",
                 "lon" => "-0.2057054",
-                "icon" => "img/lodge.jpg",
+                "icon" => "img/canteen.jpg",
                 "created_at" => "NULL",
                 "updated_at" => "NULL"
             ],
@@ -77,13 +77,22 @@ class LocationSeeder extends Seeder
                 "description" => "<strong>Learning Center</strong><p><br>Learning area</p>",
                 "lat" => "5.5534076",
                 "lon" => "-0.2056497",
-                "icon" => "img/lodge.jpg",
+                "icon" => "img/learning_center.jpg",
+                "created_at" => "NULL",
+                "updated_at" => "NULL"
+            ],
+            [
+                "location" => "K-Block",
+                "description" => "<strong>K-Block</strong><p><br>Number of floors: 3</p>",
+                "lat" => "5.5535042",
+                "lon" => "-0.2056766",
+                "icon" => "img/learning_center.jpg",
                 "created_at" => "NULL",
                 "updated_at" => "NULL"
             ],
             [
                 "location" => "Auditorium",
-                "description" => "<strong>New Hostel</strong><p><br> Number of floors: 1</p>",
+                "description" => "<strong>Auditorium</strong><p><br> Number of floors: 1</p>",
                 "lat" => "5.5534468",
                 "lon" => "-0.2061917",
                 "icon" => "img/audi.jpg",
@@ -92,7 +101,7 @@ class LocationSeeder extends Seeder
             ],
             [
                 "location" => "New IT Building",
-                "description" => "<strong>New Hostel</strong><p> <br> Number of floors: 5</p>",
+                "description" => "<strong>New IT Building</strong><p> <br> Number of floors: 5</p>",
                 "lat" => "5.5535541",
                 "lon" => "-0.2063403",
                 "icon" => "img/new_it.jpg",
@@ -174,8 +183,8 @@ class LocationSeeder extends Seeder
             [
                 "location" => "N Block",
                 "description" => "<strong>N Blockl</strong><p> <br> Number of floors: 4 </p>",
-                "lat" => "5.5687858",
-                "lon" => "-0.2797772",
+                "lat" => "5.5535106",
+                "lon" => "-0.2050843",
                 "icon" => "img/n block.jpg",
                 "created_at" => "NULL",
                 "updated_at" => "NULL"

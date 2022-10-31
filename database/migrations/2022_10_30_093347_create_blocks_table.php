@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('lat');
             $table->string('lon');
             $table->string('icon');
+            $table->integer('type');
             $table->integer('number_of_levels');
             $table->timestamps();
         });
