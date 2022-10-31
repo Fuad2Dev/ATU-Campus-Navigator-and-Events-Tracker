@@ -93,8 +93,12 @@
             @endswitch
 
             {{-- <div class="text-primary">edit</div> --}}
+            
+        </div>
+        <div class="d-flex justify-content-end">
             <small><strong> created: </strong>{{$association->created_at->format('d-M-y')}}</small>
         </div>
+        
 
         {{-- separator --}}
         <div class="col-12">

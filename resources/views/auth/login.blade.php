@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>ATU CNET</title>
 
     <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
@@ -38,7 +38,8 @@
             <form action="{{ route('login') }}" method="POST" class="row g-4 container">
                 @csrf
                 <x-alert />
-
+                <img src="{{asset('img/logo.png')}}" alt="" width="120px" height="150px">
+                <br>
                 <x-form.text-box label="ID" name="id" />
                 <x-form.text-box name="password" label="Password" type="password" />
 
