@@ -125,7 +125,7 @@ class PlaceSeeder extends Seeder
       20 => [
         'name' => 'WASHROOM',
         'position' => '7',
-        'place_type_id' => '1',
+        'place_type_id' => '7',
       ],
       21 => [
         'name' => 'NG1',

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Association;
+use App\Models\Block;
 use App\Models\InviteType;
+use App\Models\Place;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -29,7 +31,8 @@ class EventController extends Controller
         }
         // dd($now->format('Y-m-d h:i'));
 
-        return view('event.create', compact('association', 'inviteTypes', 'now'));
+        $places = Place::all()->where('place_type_id', 1);
+        return view('event.create', compact('association', 'inviteTypes', 'now', 'places'));
     }
 
     /**
@@ -40,22 +43,25 @@ class EventController extends Controller
      */
     public function store(Association $association, Request $request)
     {
+        // dd($request);
         $this->validate(
             $request,
             [
                 'name' => 'required',
                 'time' => 'after: 6:00| before: 22:00',
                 'date_time' => 'required|after:3 hours',
+                'place_id' => 'required'
             ],
             [
                 'name.required' => 'required',
+                'place_id.required' => 'required',
                 'time.after' => 'too early to hold an event',
                 'time.before' => 'too late to hold an event',
                 'date_time.after' => 'time >= 3 hours',
-                ]
-            );
-            
-            // dd($request->all());
+            ]
+        );
+
+        // dd($request->all());
         $event = $association->events()->create($request->all());
         // dd($event);
 

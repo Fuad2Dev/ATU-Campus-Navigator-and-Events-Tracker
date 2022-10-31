@@ -35,6 +35,7 @@
         @endif
         <strong>Date: </strong>{{ $event->date_time->format('l M d') }} <br>
         <strong>Time: </strong>{{ $event->date_time->format('h:i a') }} <br>
+        <strong>Location: </strong>{{ $event->place->name }} <br>
         <div class="p-2"></div>
         <em class="p-3"> ~ {{ $event->description }} </em>
     </div>
@@ -48,7 +49,7 @@
             </form>
         @endif
 
-        <div class="btn btn-info">Locate</div>
+        <a class="btn btn-info" href="{{ route('direction.2d.place', ['place' => $event->place]) }}">Locate</a>
 
         @if ($editable)
             <a href="{{ route('association.event.edit', compact('event', 'association')) }}"

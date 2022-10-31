@@ -16,5 +16,4 @@ class Place extends Model
     public function place_type(){
         return $this->belongsTo(PlaceType::class);
     }
-    
 }

@@ -1,9 +1,9 @@
 @props(['maxlength' => 0, 'name', 'label', 'value' => '', 'options'])
 <div class="mb-4">
-    <select class="form-control {{ $label }} @error($name) is-invalid @enderror" name="{{ $label }}">
+    <select class="form-control {{ $label }} @error($name) is-invalid @enderror" name="{{ $name }}">
         <option></option>
         @foreach ($options as $option)
-            <option value="{{ $option }}">{{ $option }}</option>
+            <option value="{{ $option->id }}">{{ $option->name }}</option>
         @endforeach
 
     </select>

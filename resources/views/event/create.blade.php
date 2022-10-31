@@ -24,7 +24,7 @@
 
         </div>
 
-        <x-form.select type="radio" name="location" label="location" :options="['one', 'two', 'three']" />
+        <x-form.select name="place_id" label="location" :options="$places" />
 
 
 
