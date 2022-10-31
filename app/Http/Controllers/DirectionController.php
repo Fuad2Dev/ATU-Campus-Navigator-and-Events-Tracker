@@ -29,8 +29,12 @@ class DirectionController extends Controller
 
     public function ar($cords)
     {
-        $cords = explode(',', $cords);
-        dd($cords);
+        $arr = explode(',', $cords);
+        $cords = collect();
+        for ($i=1; $i < count($arr); $i+=2) {
+            $cords->put($i-1, collect(['lon' => $arr[$i-1], 'lat' =>$arr[$i]]));
+        }
+        
         // for ($i=0; $i < $cords->; $i++) { 
         //     # code...
         // }

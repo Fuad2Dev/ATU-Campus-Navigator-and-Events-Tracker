@@ -21,13 +21,16 @@
   <div style="width: 50%; height: 50%">
     <a-scene vr-mode-ui="enabled: false" arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true' >
         <a-camera id="camera" minDistance=1 alert=true gps-camera rotation-reader position="0 1.6 0"></a-camera>
-        <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553566; longitude: -0.205716' material='color: violet' scale='2 2 2'></a-sphere >
-        <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553575; longitude: -0.205675' material='color: indigo' scale='2 2 2'></a-sphere >
+        @foreach ($cords as $key => $lonlat)
+        <a-sphere  position="0 -20 0" gps-entity-place='latitude: {{$lonlat['lat']}}; longitude: {{$lonlat['lon']}}' material='color: violet' scale='2 2 2'></a-sphere >
+            
+        @endforeach
+        {{-- <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553575; longitude: -0.205675' material='color: indigo' scale='2 2 2'></a-sphere >
         <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553589; longitude: -0.205618' material='color: blue' scale='2 2 2'></a-sphere >
         <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553604; longitude: -0.205546' material='color: green' scale='2 2 2'></a-sphere >
         <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553607; longitude: -0.205486' material='color: yellow' scale='2 2 2'></a-sphere >
         <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553617; longitude: -0.205440' material='color: orange' scale='2 2 2'></a-sphere >
-        <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553623; longitude: -0.205399' material='color: red' scale='2 2 2'></a-sphere >
+        <a-sphere  position="0 -20 0" gps-entity-place='latitude: 5.553623; longitude: -0.205399' material='color: red' scale='2 2 2'></a-sphere > --}}
     
       </a-scene>
   </div>
