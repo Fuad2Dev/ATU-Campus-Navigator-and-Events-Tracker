@@ -47,10 +47,10 @@ class EventController extends Controller
         $this->validate(
             $request,
             [
-                'name' => 'required',
-                'time' => 'after: 6:00| before: 22:00',
-                'date_time' => 'required|after:3 hours',
-                'place_id' => 'required'
+                // 'name' => 'required',
+                // 'time' => 'after: 6:00| before: 22:00',
+                // 'date_time' => 'required|after:3 hours',
+                // 'place_id' => 'required'
             ],
             [
                 'name.required' => 'required',
