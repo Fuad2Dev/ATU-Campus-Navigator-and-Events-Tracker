@@ -257,7 +257,7 @@
             console.log('A geolocate event has occurred.');
             console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude)
             var start = [e.coords.longitude, e.coords.latitude];
-            var end = [-0.2059355, 5.5539524]
+            var end = [{{$place->lon}}, {{$place->lat}}]
             getRoute(start, end);
             geolocate.off('geolocate', null);
         }
