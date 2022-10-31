@@ -5,7 +5,6 @@
 
         <div class="position-absolute bottom-0 end-2 flex-column d-flex">
             <div class="btn btn-primary mb-2">Change</div>
-            {{-- <div class="m-1"></div> --}}
             <div class="btn btn-danger">Remove</div>
         </div>
     </div> --}}
