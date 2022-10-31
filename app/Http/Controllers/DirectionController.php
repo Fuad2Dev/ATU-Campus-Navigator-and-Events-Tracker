@@ -26,4 +26,13 @@ class DirectionController extends Controller
     {
         return view('direction/2d', ['place' => $block]);
     }
+
+    public function ar($cords)
+    {
+        dd($cords);
+        // for ($i=0; $i < $cords->; $i++) { 
+        //     # code...
+        // }
+        return view('direction/ar', compact('cords'));
+    }
 }

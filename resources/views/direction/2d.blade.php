@@ -74,7 +74,7 @@
             const data = json.routes[0];
             const route = data.geometry.coordinates;
             var a = document.getElementById('ar'); //or grab it by tagname etc
-            a.href = "{{URL::to('/')}}/direction/AR/place/" + route;
+            a.href = "{{URL::to('/')}}/direction/AR/path/" + route;
             console.log(a.href);
             const geojson = {
                 type: 'Feature',
